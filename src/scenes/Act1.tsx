@@ -1,0 +1,142 @@
+import React from 'react';
+import {interpolate, useCurrentFrame} from 'remotion';
+import {
+  Counter,
+  Eyebrow,
+  Headline,
+  Logo,
+  Rise,
+  Stage,
+} from '../components';
+import {BRAND_GRADIENT, COLORS} from '../theme';
+
+// ---------------------------------------------------------------------------
+// SCENE 1 · THE PROOF  (cold open, dark)
+// VO: "One of the world's leading management consulting firms runs its AI on a
+//      platform we built. Ten thousand users. Six continents. In production,
+//      every day."
+// ---------------------------------------------------------------------------
+
+const StatLine: React.FC<{
+  delay: number;
+  value: React.ReactNode;
+  label: string;
+}> = ({delay, value, label}) => (
+  <Rise delay={delay} distance={34} dur={26}>
+    <div style={{display: 'flex', alignItems: 'baseline', gap: 28}}>
+      <div
+        style={{
+          fontSize: 128,
+          fontWeight: 700,
+          letterSpacing: -4,
+          lineHeight: 1.05,
+          color: COLORS.white,
+          minWidth: 560,
+        }}
+      >
+        {value}
+      </div>
+      <div
+        style={{
+          fontSize: 34,
+          fontWeight: 400,
+          letterSpacing: 3,
+          textTransform: 'uppercase',
+          color: COLORS.darkMuted,
+        }}
+      >
+        {label}
+      </div>
+    </div>
+  </Rise>
+);
+
+export const SceneProof: React.FC = () => {
+  const frame = useCurrentFrame();
+  const sweep = interpolate(frame, [110, 210], [0, 100], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  return (
+    <Stage tone="dark">
+      <Eyebrow tone="dark" delay={4}>
+        Proven at enterprise scale
+      </Eyebrow>
+
+      <div style={{height: 54}} />
+
+      <div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
+        <StatLine
+          delay={100}
+          value={<Counter to={10000} delay={100} dur={46} suffix="+" />}
+          label="platform users"
+        />
+        <StatLine delay={148} value="Six" label="continents" />
+        <StatLine delay={196} value="One" label="AI platform" />
+      </div>
+
+      <div style={{height: 70}} />
+
+      <div style={{width: 620, height: 3, background: '#2E2724'}}>
+        <div
+          style={{width: `${sweep}%`, height: '100%', background: BRAND_GRADIENT}}
+        />
+      </div>
+
+      <div style={{height: 34}} />
+
+      <Rise delay={252} distance={18}>
+        <div style={{fontSize: 40, fontWeight: 300, color: COLORS.white}}>
+          Built by Infinite Possibilities.
+        </div>
+      </Rise>
+    </Stage>
+  );
+};
+
+// ---------------------------------------------------------------------------
+// SCENE 2 · WHO WE ARE  (logo reveal, light)
+// VO: "We are Infinite Possibilities. We build custom AI solutions for
+//      portfolio companies — moving them from AI ambition to AI in production."
+// ---------------------------------------------------------------------------
+
+export const SceneBrand: React.FC = () => {
+  const frame = useCurrentFrame();
+  const logoScale = interpolate(frame, [0, 40], [0.94, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  return (
+    <Stage tone="light">
+      <div style={{display: 'flex', flexDirection: 'column', gap: 56}}>
+        <Rise delay={2} distance={20} dur={34}>
+          <Logo width={780} style={{transform: `scale(${logoScale})`}} />
+        </Rise>
+
+        <Headline delay={62} size={82}>
+          Custom AI platforms for
+          <br />
+          portfolio companies.
+        </Headline>
+
+        <Rise delay={128} distance={16}>
+          <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
+            <div style={{width: 70, height: 4, background: BRAND_GRADIENT}} />
+            <span
+              style={{
+                fontSize: 32,
+                fontWeight: 300,
+                color: COLORS.inkSoft,
+                fontStyle: 'italic',
+              }}
+            >
+              Software development partner for enterprise-ready custom AI
+            </span>
+          </div>
+        </Rise>
+      </div>
+    </Stage>
+  );
+};
