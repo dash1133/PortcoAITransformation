@@ -23,9 +23,30 @@ keeps only the 16 ellipses that carry meaning and drops the 23 that were
 decoration. Expected runtime **≈ 4:07**, at the same speaking rate (the 16 Aug
 copy edits add eight words, about 3.4s).
 
-A side benefit worth knowing: with the filler ellipses gone, the remaining
-scene-boundary gaps stand well clear of the in-sentence pauses, so silence
-detection lands the scene cuts far more reliably than it did last time.
+### What the re-record actually delivered
+
+| | Before | After |
+|---|---|---|
+| Runtime | 4:26 | **4:16** |
+| Speech | 75% | **85%** (A 87%, B 82%) |
+| Silence | 66.3s | **38.8s** |
+| Speaking rate | 142 wpm | 138 / 130 wpm |
+
+The dead air came down by 27 seconds. The read is very slightly slower than
+before, which is the right trade: she is no longer racing between manufactured
+pauses.
+
+**One prediction of mine was wrong.** I expected the trimmed ellipses to make
+the scene-boundary gaps stand clear of the in-sentence ones, so silence
+detection could find the cuts. It didn't — v3 swallowed the break tags again and
+every gap landed in the same 0.5–1.2s band. Estimating the cuts from word counts
+put two of them 2–3s off, which is exactly the drift you heard on the last cut.
+
+The fix is `scripts/align-scenes.py`, which no longer guesses: it transcribes
+each take and aligns the result against this script, so every scene change is
+pinned to the silence that actually contains it. Re-aligning the spliced file
+reproduces the scene clock to within one frame. **Break tags no longer matter** —
+future takes sync correctly whether v3 honours them or not.
 
 ---
 
