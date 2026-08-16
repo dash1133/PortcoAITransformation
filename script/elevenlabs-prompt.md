@@ -76,7 +76,7 @@ And we'll structure it your way. A dedicated AI Pod. Targeted staff augmentation
 
 <break time="1.5s" />
 
-Accelerate your AI program. Build on the right architecture from day one. Move in weeks, not months. And never be locked to a single vendor.
+So don't get scattered. Focus your AI program. Build on the right architecture. Don't lock to a single LLM model. And partner with a reliable vendor with real AI credibility. The impact: profitable growth, and exit value.
 
 <break time="1.5s" />
 

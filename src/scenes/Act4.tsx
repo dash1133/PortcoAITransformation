@@ -122,24 +122,25 @@ export const SceneOperatingModels: React.FC = () => (
 );
 
 // ---------------------------------------------------------------------------
-// SCENE 10 · THE VALUE RECAP
+// SCENE 10 · RECAP
 // ---------------------------------------------------------------------------
 
 const RecapLine: React.FC<{delay: number; children: React.ReactNode}> = ({
   delay,
   children,
 }) => (
-  <Rise delay={delay} distance={18} dur={16}>
-    <div style={{display: 'flex', alignItems: 'center', gap: 24}}>
+  <Rise delay={delay} distance={18} dur={18}>
+    <div style={{display: 'flex', alignItems: 'center', gap: 22}}>
       <div
         style={{
-          width: 16,
-          height: 16,
+          width: 14,
+          height: 14,
           borderRadius: '50%',
           backgroundColor: COLORS.orange,
+          flex: 'none',
         }}
       />
-      <span style={{fontSize: 62, fontWeight: 600, color: COLORS.ink}}>
+      <span style={{fontSize: 46, fontWeight: 500, color: COLORS.ink}}>
         {children}
       </span>
     </div>
@@ -147,13 +148,66 @@ const RecapLine: React.FC<{delay: number; children: React.ReactNode}> = ({
 );
 
 export const SceneRecap: React.FC = () => (
-  <Stage tone="light" padding={150}>
-    <div style={{display: 'flex', flexDirection: 'column', gap: 34}}>
-      <RecapLine delay={10}>Accelerate your AI program</RecapLine>
-      <RecapLine delay={78}>Build on the right architecture</RecapLine>
-      <RecapLine delay={150}>Move in weeks, not months</RecapLine>
-      <RecapLine delay={218}>Never locked to a single vendor</RecapLine>
+  <Stage tone="light" padding={130}>
+    <Eyebrow delay={4}>Recap</Eyebrow>
+    <div style={{height: 30}} />
+
+    <Rise delay={24} distance={18}>
+      <div
+        style={{
+          fontSize: 60,
+          fontWeight: 700,
+          letterSpacing: -1.4,
+          lineHeight: 1.12,
+          color: COLORS.ink,
+        }}
+      >
+        Don&rsquo;t get scattered.
+        <br />
+        Build a strategic AI asset
+      </div>
+    </Rise>
+
+    <div style={{height: 52}} />
+
+    <div style={{display: 'flex', flexDirection: 'column', gap: 26}}>
+      <RecapLine delay={120}>Focus your AI program</RecapLine>
+      <RecapLine delay={180}>Build on the right architecture</RecapLine>
+      <RecapLine delay={240}>Don&rsquo;t lock to a single LLM model</RecapLine>
+      <RecapLine delay={300}>
+        Partner with a reliable vendor with AI credibility
+      </RecapLine>
     </div>
+
+    <div style={{height: 50}} />
+
+    <Rise delay={390} distance={20}>
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'baseline',
+          gap: 18,
+          background: BRAND_GRADIENT,
+          borderRadius: 12,
+          padding: '18px 32px',
+        }}
+      >
+        <span
+          style={{
+            fontSize: 24,
+            fontWeight: 700,
+            letterSpacing: 2.5,
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.85)',
+          }}
+        >
+          Impact
+        </span>
+        <span style={{fontSize: 40, fontWeight: 700, color: COLORS.white}}>
+          Profitable growth and exit value
+        </span>
+      </div>
+    </Rise>
   </Stage>
 );
 
