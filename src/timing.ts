@@ -3,11 +3,14 @@ import {FPS} from './theme';
 // ---------------------------------------------------------------------------
 // SCENE TIMING
 //
-// These durations are ESTIMATES based on the approved VO script read at
-// ~150 wpm plus the 1.5s inter-scene breaks specified in the ElevenLabs
-// package. When the real MP3 lands, `npm run sync` measures the actual
-// silence gaps and rewrites the `seconds` values below — every animation is
-// derived from them, so nothing else needs to change.
+// MEASURED, not estimated. `scripts/align-scenes.py` transcribes each take and
+// aligns the result against the approved script, which pins every scene change
+// to the silence that actually contains it; `scripts/build-vo.mjs` splices the
+// two takes and writes the durations below. Every animation cue is a fraction
+// of its scene (see `useBeat`), so re-running those two scripts after a new
+// read is all that is needed to re-sync the film.
+//
+// Take A = scenes 1-6, take B = scenes 7-11, joined with a 1.0s gap.
 // ---------------------------------------------------------------------------
 
 export type SceneId =
@@ -24,17 +27,17 @@ export type SceneId =
   | 'signoff';
 
 export const SCENES: {id: SceneId; seconds: number; words: number}[] = [
-  {id: 'proof', seconds: 14.62, words: 24},
-  {id: 'brand', seconds: 10.66, words: 19},
-  {id: 'reality', seconds: 24.17, words: 40},
-  {id: 'needs', seconds: 18.1, words: 31},
-  {id: 'deliver', seconds: 32.77, words: 63},
-  {id: 'architecture', seconds: 48.03, words: 91},
-  {id: 'caseStudy', seconds: 49.94, words: 84},
-  {id: 'pod', seconds: 18.32, words: 36},
-  {id: 'operatingModels', seconds: 21.81, words: 38},
-  {id: 'recap', seconds: 22.44, words: 39},
-  {id: 'signoff', seconds: 6.0, words: 7},
+  {id: 'proof', seconds: 11.938, words: 24},
+  {id: 'brand', seconds: 10.373, words: 18},
+  {id: 'reality', seconds: 22.421, words: 36},
+  {id: 'needs', seconds: 16.685, words: 30},
+  {id: 'deliver', seconds: 30.308, words: 62},
+  {id: 'architecture', seconds: 45.211, words: 94},
+  {id: 'caseStudy', seconds: 48.921, words: 87},
+  {id: 'pod', seconds: 19.362, words: 35},
+  {id: 'operatingModels', seconds: 23.357, words: 38},
+  {id: 'recap', seconds: 21.676, words: 39},
+  {id: 'signoff', seconds: 6.608, words: 7},
 ];
 
 export const frames = (seconds: number) => Math.round(seconds * FPS);
