@@ -19,107 +19,74 @@ carries inline audio tags for tone and ellipses for pacing.
 
 ---
 
-## 2 · Choose how you generate
+## 2 · The script — copy the fenced block, generate ONCE
 
-v3 is more expressive than v2 but less consistent across a long single take,
-and its handling of `<break>` tags is unreliable. Those gaps are what the video
-syncs to — so there are two paths.
+Everything inside the fence is input to v3 and nothing else is. There are no
+scene labels or comments in it — v3 reads whatever you paste, so a heading like
+"01 · The proof" would be spoken aloud.
 
-### Path A — eleven separate clips *(recommended for v3)*
+- `[tags]` direct delivery and are not spoken.
+- `…` are deliberate beats.
+- `<break time="1.5s" />` separates the eleven scenes. **Keep all ten** — they
+  are what the video syncs to.
 
-Generate **each scene below as its own clip.** Save them as `01.mp3` … `11.mp3`
-and send me the folder. I concatenate them with exact 1.5-second gaps, so scene
-boundaries are known rather than detected — the sync is exact, not inferred.
-
-It also means a scene you dislike can be re-rolled on its own, without
-re-reading the whole film.
-
-### Path B — one continuous take
-
-Paste the whole script including the `<break time="1.5s" />` lines and generate
-once. Send the single MP3. I detect the gaps and re-time from them. Faster for
-you; slightly riskier, because if v3 swallows the break tags I fall back to
-detecting natural sentence pauses.
-
-**Either way the picture follows the read** — every animation cue is stored as a
-fraction of its scene, so the motion stretches or compresses with your narrator.
-
----
-
-## 3 · The script
-
-Tags in `[brackets]` direct delivery and are not spoken. Ellipses `…` are
-deliberate beats — they carry the pacing that `<break>` used to.
-
----
-
-**01 · The proof**
-
+```
 [confident] One of the world's leading consulting firms runs its AI on a platform we built. … Ten thousand users. … Six continents. … In production, every day.
 
 <break time="1.5s" />
-
-**02 · Who we are**
 
 [warm] We're Infinite Possibilities. We build custom AI platforms for portfolio companies … from AI ambition to AI in production.
 
 <break time="1.5s" />
 
-**03 · The reality inside a PortCo**
-
 [serious] Inside most mid-market portfolio companies, you find the same four things. … Citizen developers build … unable to scale. … Vendors sell … unable to fit. … Leaders invest … unable to determine what, and when. … Tokens burn … unable to verify return.
 
 <break time="1.5s" />
-
-**04 · What a portfolio company needs**
 
 [curious] What does a portfolio company need? … [confident] Not another one-off solution. … Not another vendor's platform. … A purpose-built AI platform — a strategic asset they own … driving profitable growth, and higher exit value.
 
 <break time="1.5s" />
 
-**05 · What we deliver**
-
 [thoughtful] We build these assets as a platform focused on the prioritized workflows that drive profitable growth. One platform holding the tools, knowledge and templates specific to your company … with one connection into your core systems. Model-agnostic, so you're never locked to one vendor. Cost-managed, so token spend never outruns the work it replaces. … And secure by design — every new build inherits it.
 
 <break time="1.5s" />
-
-**06 · The architecture**
 
 [thoughtful] Here's what we build … and where the line sits. Inside: the custom workflows that run your business, and beneath them the Enterprise AI Core — connectors, skills, knowledge bases, templates and components. … [confident] That's the asset. That's what you own. … [thoughtful] Outside sit two things you already have: your enterprise systems and data, and the personal productivity AI your people use daily. Both connect to the Core … both ways … through the same governed standards. So your data stays protected, your people's AI becomes enterprise-aware, and every new workflow starts from what's already there.
 
 <break time="1.5s" />
 
-**07 · Case study**
-
 [warm] Take a heavy-equipment service business. We mapped their top five processes — warranty recovery, procurement and AP, quote-to-cash, bay operations, parts and inventory. … Beneath them, one Core: connectors into their ERP, CRM and OEM warranty portals, their warranty policy knowledge, their claim and appeal templates. … [serious] Month three of twenty-four. Warranty receivables is live, and one and a half million dollars of stuck claims is now visible … and being worked. … [confident] The other four are sequenced behind it — each one faster, because the Core is already there.
 
 <break time="1.5s" />
-
-**08 · The AI Pod**
 
 [confident] We deliver through a dedicated AI Pod that reports into your AI transformation team, led by an engineering manager — product, engineering, UX, QA and DevOps. … Our founder and CEO is ultimately accountable for every outcome.
 
 <break time="1.5s" />
 
-**09 · Flexible operating models**
-
 [warm] We'll structure it your way. … A dedicated AI Pod. … Targeted staff augmentation. … Or build-operate-transfer — we run it, then hand it over. … [serious] Whichever you choose, commitment is earned in four-week increments … never assumed. At every gate, you decide.
 
 <break time="1.5s" />
-
-**10 · Recap**
 
 [serious] Don't scatter efforts and funds — build a strategic AI asset. … Focus your program. … Build on the right architecture. … Don't lock to a single model. … Partner with a credible, reliable AI vendor. … [confident] The impact: profitable growth, and higher exit value.
 
 <break time="1.5s" />
 
-**11 · Sign-off**
-
 [warm] Infinite Possibilities. … Let's build your AI advantage.
+```
+
+**If v3 swallows the break tags** (it does this inconsistently), the gaps
+between scenes will be short and my detection may not find all ten. Two fixes,
+in order of preference:
+
+1. Re-generate with a blank line where each break is and tell me — I fall back
+   to detecting the natural sentence pauses.
+2. Generate each scene as its own clip (`01.mp3` … `11.mp3`) and send the
+   folder. `scripts/stitch-scenes.mjs` joins them with exact gaps, so the scene
+   boundaries are known rather than detected.
 
 ---
 
-## 4 · How the tags are used
+## 3 · How the tags are used
 
 Five tags, chosen so the film has an emotional shape rather than one flat
 register:
@@ -153,7 +120,7 @@ hard hit, the place worth trying is *"a strategic asset they OWN"* in scene 04.
 
 ---
 
-## 5 · Timing
+## 4 · Timing
 
 At ~150 wpm before tags. The pauses add roughly 10–15% on top, and the sync
 step measures the real thing — these are a sanity check, not a target.
@@ -178,7 +145,7 @@ room to land. Both sync paths enforce that floor.
 
 ---
 
-## 6 · Before you send it
+## 5 · Before you send it
 
 - **Listen to the first thirty seconds.** v3 occasionally *speaks* a tag instead
   of acting on it. If you hear the word "confident," re-roll that scene.
