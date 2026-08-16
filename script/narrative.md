@@ -100,7 +100,7 @@ Landing: **`Plenty of solutions. Very little strategy.`**
         └──────────────────────────────────────────────┘
 ```
 
-> So here's what we actually build — and where the line sits. Inside the line: the custom workflows that run your business, and beneath them the Enterprise AI Core — the connectors into your systems, the skills, the knowledge bases, the templates and components your company runs on. That is the asset. That is what you own. Outside the line sit two things you already have: your enterprise systems and data, and the personal productivity AI platforms your people use every day. Both connect to the Core, both ways, through the same governed standards. Your data stays protected. Your people's AI becomes enterprise-aware. And every new workflow starts from what's already there.
+> Let's take a closer look at the architecture of the AI platform. It has two parts: the custom workflows that run your business, and the Enterprise AI Core — the connectors into your systems, the skills, the knowledge bases, the templates and components your company runs on. That is the asset. That is what you own. Outside the line sit two things you already have: your enterprise systems and data, and the personal productivity AI platforms your people use every day. Both connect to the Core, both ways, through the same governed standards. Your data stays protected. Your people's AI becomes enterprise-aware. And every new workflow starts from what's already there.
 
 **Kicker:** `The tools are how you talk to it. The Core is what you own.`
 

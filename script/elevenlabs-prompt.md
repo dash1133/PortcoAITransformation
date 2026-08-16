@@ -1,9 +1,9 @@
 # ElevenLabs v3 — Voiceover Generation Package (v2, two takes)
 ## Infinite Possibilities — PortCo Marketing Film
 
-**Eleven scenes · 472 words · two generations.** Same words as the approved
-script — **not a single line of copy has changed.** What changed is the pacing
-markup: 39 ellipses cut down to 16.
+**Eleven scenes · 476 words · two generations.** The pacing markup is the main
+change — 39 ellipses cut down to 16. The only copy change is scene 6's opening,
+which now names the architecture directly (Dash, 16 Aug).
 
 ### Why this version exists
 
@@ -19,7 +19,8 @@ Measured on the last take:
 The voice was never reading slowly. The pauses were mine: 39 ellipses plus 10
 break tags accounted for roughly 49 of those 66 silent seconds. This version
 keeps only the 16 ellipses that carry meaning and drops the 23 that were
-decoration. Expected runtime **≈ 4:03**, at the same speaking rate.
+decoration. Expected runtime **≈ 4:05**, at the same speaking rate (the new
+scene-6 opening adds four words, about 1.7s).
 
 A side benefit worth knowing: with the filler ellipses gone, the remaining
 scene-boundary gaps stand well clear of the in-sentence pauses, so silence
@@ -69,7 +70,7 @@ Save the result as **`take-a.mp3`**.
 
 <break time="1.5s" />
 
-[thoughtful] Here's what we build, and where the line sits. Inside: the custom workflows that run your business, and beneath them the Enterprise AI Core — connectors, skills, knowledge bases, templates and components. … [confident] That's the asset. That's what you own. … [thoughtful] Outside sit two things you already have: your enterprise systems and data, and the personal productivity AI your people use daily. Both connect to the Core … both ways, through the same governed standards. So your data stays protected, your people's AI becomes enterprise-aware, and every new workflow starts from what's already there.
+[thoughtful] Let's take a closer look at the architecture of the AI platform. It has two parts: the custom workflows that run your business, and the Enterprise AI Core — connectors, skills, knowledge bases, templates and components. … [confident] That's the asset. That's what you own. … [thoughtful] Outside sit two things you already have: your enterprise systems and data, and the personal productivity AI your people use daily. Both connect to the Core … both ways, through the same governed standards. So your data stays protected, your people's AI becomes enterprise-aware, and every new workflow starts from what's already there.
 ```
 
 ---
