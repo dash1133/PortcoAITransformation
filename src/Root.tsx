@@ -6,6 +6,9 @@ import {
   ThumbNumber,
   ThumbPilotsAssets,
   ThumbScale,
+  ThumbTitleDark,
+  ThumbTitleLight,
+  ThumbTitlePhoto,
 } from './Thumbnails';
 import {TOTAL_FRAMES} from './timing';
 import {FPS, HEIGHT, WIDTH} from './theme';
@@ -34,5 +37,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="ThumbA" component={ThumbPilotsAssets} {...THUMB_SIZE} />
     <Still id="ThumbB" component={ThumbNumber} {...THUMB_SIZE} />
     <Still id="ThumbC" component={ThumbScale} {...THUMB_SIZE} />
+    <Still id="ThumbTitleDark" component={ThumbTitleDark} {...THUMB_SIZE} />
+    <Still id="ThumbTitleLight" component={ThumbTitleLight} {...THUMB_SIZE} />
+    <Still id="ThumbTitlePhoto" component={ThumbTitlePhoto} {...THUMB_SIZE} />
   </>
 );

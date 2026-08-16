@@ -258,4 +258,142 @@ export const ThumbScale: React.FC = () => (
   </Frame>
 );
 
+// --- D · the title itself ---------------------------------------------------
+// Per Dash: build the thumbnail on the title. The full title is present, but
+// it is not set flat -- "EXIT VALUE" is the payoff and the only part that can
+// survive the phone feed, so the lead clause is set as a run-in above it and
+// the payoff carries the weight. Read large it is the whole sentence; read
+// small it is two words, which is exactly the right pair of readings.
+
+const TitleBlock: React.FC<{tone: 'dark' | 'light'; width?: number}> = ({
+  tone,
+  width,
+}) => {
+  const dark = tone === 'dark';
+  return (
+    <div style={{maxWidth: width}}>
+      <div
+        style={{
+          fontSize: 56,
+          fontWeight: 600,
+          letterSpacing: -1,
+          lineHeight: 1.14,
+          color: dark ? COLORS.gold : COLORS.inkSoft,
+        }}
+      >
+        How portfolio companies
+        <br />
+        turn AI into
+      </div>
+
+      <div style={{height: 14}} />
+
+      <div
+        style={{
+          fontSize: width && width < 800 ? 150 : 178,
+          fontWeight: 700,
+          letterSpacing: -7,
+          lineHeight: 0.94,
+          color: dark ? COLORS.white : COLORS.ink,
+        }}
+      >
+        EXIT
+        <br />
+        VALUE
+      </div>
+
+      <div style={{height: 22}} />
+
+      <div style={{width: 260, height: 10, background: BRAND_GRADIENT}} />
+    </div>
+  );
+};
+
+export const ThumbTitleDark: React.FC = () => (
+  <Frame>
+    <AbsoluteFill style={{padding: 58, justifyContent: 'center'}}>
+      <TitleBlock tone="dark" />
+    </AbsoluteFill>
+    <div style={{position: 'absolute', right: 52, bottom: 44}}>
+      <Mark />
+    </div>
+  </Frame>
+);
+
+/** Light ground: on YouTube's dark interface this is the higher-contrast card. */
+export const ThumbTitleLight: React.FC = () => (
+  <AbsoluteFill
+    style={{backgroundColor: COLORS.offWhite, fontFamily: FONT.family}}
+  >
+    <BrandFont />
+    <AbsoluteFill
+      style={{
+        background:
+          'radial-gradient(1000px 700px at 78% 12%, rgba(235,99,54,0.16) 0%, ' +
+          'rgba(255,164,21,0.08) 45%, rgba(250,248,246,0) 74%)',
+      }}
+    />
+    <AbsoluteFill style={{padding: 58, justifyContent: 'center'}}>
+      <TitleBlock tone="light" />
+    </AbsoluteFill>
+    <div style={{position: 'absolute', right: 52, bottom: 44}}>
+      <Img
+        src={staticFile('logo.png')}
+        style={{width: 210, height: 'auto', display: 'block'}}
+      />
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 10,
+        background: BRAND_GRADIENT,
+      }}
+    />
+  </AbsoluteFill>
+);
+
+// --- E · the title, with the founder ----------------------------------------
+// Renders once public/dash.png exists (cut out, transparent background). A
+// face is the single biggest lever on click-through for founder-led B2B, so
+// the type gives up a third of the frame to make room for it.
+
+export const ThumbTitlePhoto: React.FC = () => (
+  <Frame>
+    {/* Warm pool behind the shoulders so the cutout doesn't float. */}
+    <AbsoluteFill
+      style={{
+        background:
+          'radial-gradient(460px 520px at 76% 62%, rgba(235,99,54,0.30) 0%, ' +
+          'rgba(225,52,97,0.12) 52%, rgba(20,17,16,0) 76%)',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        right: -30,
+        bottom: 0,
+        height: 700,
+        display: 'flex',
+        alignItems: 'flex-end',
+      }}
+    >
+      <Img
+        src={staticFile('dash.png')}
+        style={{height: 700, width: 'auto', display: 'block'}}
+      />
+    </div>
+
+    <AbsoluteFill style={{padding: 58, justifyContent: 'center'}}>
+      <TitleBlock tone="dark" width={720} />
+    </AbsoluteFill>
+
+    <div style={{position: 'absolute', left: 58, bottom: 40}}>
+      <Mark width={170} />
+    </div>
+  </Frame>
+);
+
 export const THUMB_SIZE = {width: W, height: H};
