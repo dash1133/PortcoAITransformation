@@ -252,7 +252,7 @@ const card = (s, o) =>
   const s = pres.addSlide();
   s.background = {color: C.paper};
   mark(s);
-  head(s, 'What we deliver', 'We build these strategic assets for portfolio companies');
+  head(s, 'What we deliver', 'We build these strategic AI assets for portfolio companies');
   const items = [
     ['01', 'Prioritized workflows', 'that drive profitable growth'],
     ['02', 'One platform', 'your tools, knowledge and templates — one connection to your core systems'],
@@ -279,7 +279,7 @@ const card = (s, o) =>
   const s = pres.addSlide();
   s.background = {color: C.paper};
   mark(s);
-  head(s, 'Architecture', 'The architecture of a strategic AI asset');
+  head(s, 'Architecture', 'Strategic AI platform: what are we building?');
 
   // owned boundary
   s.addShape(pres.ShapeType.roundRect, {

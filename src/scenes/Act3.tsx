@@ -610,7 +610,7 @@ export const SceneArchitecture: React.FC = () => {
               color: COLORS.ink,
             }}
           >
-            The architecture of a strategic AI asset
+            Strategic AI platform: what are we building?
           </div>
         </Rise>
       </div>

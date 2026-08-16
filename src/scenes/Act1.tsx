@@ -17,32 +17,32 @@ import {BRAND_GRADIENT, COLORS} from '../theme';
 //      built. Ten thousand users. Six continents. In production every day."
 // ---------------------------------------------------------------------------
 
-const StatLine: React.FC<{
+const Stat: React.FC<{
   delay: number;
   value: React.ReactNode;
   label: string;
 }> = ({delay, value, label}) => (
-  <Rise delay={delay} distance={34} dur={26}>
-    <div style={{display: 'flex', alignItems: 'baseline', gap: 28}}>
+  <Rise delay={delay} distance={28} dur={24} style={{flex: 1}}>
+    <div>
       <div
         style={{
-          fontSize: 128,
+          fontSize: 104,
           fontWeight: 700,
-          letterSpacing: -4,
+          letterSpacing: -3,
           lineHeight: 1.05,
-          color: COLORS.white,
-          minWidth: 560,
+          color: COLORS.orange,
         }}
       >
         {value}
       </div>
       <div
         style={{
-          fontSize: 34,
+          fontSize: 28,
           fontWeight: 400,
           letterSpacing: 3,
           textTransform: 'uppercase',
           color: COLORS.darkMuted,
+          marginTop: 8,
         }}
       >
         {label}
@@ -65,19 +65,40 @@ export const SceneProof: React.FC = () => {
         Proven at enterprise scale
       </Eyebrow>
 
-      <div style={{height: 54}} />
+      <div style={{height: 46}} />
 
-      <div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
-        <StatLine
+      {/* the claim is on screen while it is being said — the frame used to sit
+          empty for six seconds under this line */}
+      <Rise delay={beat(0.05)} distance={26} dur={30}>
+        <div
+          style={{
+            fontSize: 66,
+            fontWeight: 700,
+            letterSpacing: -1.8,
+            lineHeight: 1.16,
+            color: COLORS.white,
+            maxWidth: 1480,
+          }}
+        >
+          One of the world&rsquo;s leading consulting firms
+          <br />
+          runs its AI on a platform we built
+        </div>
+      </Rise>
+
+      <div style={{height: 74}} />
+
+      <div style={{display: 'flex', gap: 60}}>
+        <Stat
           delay={beat(0.42)}
           value={<Counter to={10000} delay={beat(0.42)} dur={40} suffix="+" />}
           label="platform users"
         />
-        <StatLine delay={beat(0.54)} value="Six" label="continents" />
-        <StatLine delay={beat(0.65)} value="One" label="AI platform" />
+        <Stat delay={beat(0.54)} value="Six" label="continents" />
+        <Stat delay={beat(0.65)} value="One" label="AI platform" />
       </div>
 
-      <div style={{height: 70}} />
+      <div style={{height: 56}} />
 
       <div style={{width: 620, height: 3, backgroundColor: '#2E2724'}}>
         <div
@@ -85,10 +106,10 @@ export const SceneProof: React.FC = () => {
         />
       </div>
 
-      <div style={{height: 34}} />
+      <div style={{height: 30}} />
 
       <Rise delay={beat(0.78)} distance={18}>
-        <div style={{fontSize: 40, fontWeight: 300, color: COLORS.white}}>
+        <div style={{fontSize: 38, fontWeight: 300, color: COLORS.white}}>
           Built by Infinite Possibilities
         </div>
       </Rise>

@@ -252,7 +252,7 @@ export const SceneDeliver: React.FC = () => {
   return (
   <Stage tone="light" padding={110}>
     <Headline delay={beat(0.01)} size={58} style={{letterSpacing: -1.2}}>
-      We build these strategic assets for portfolio companies
+      We build these strategic AI assets for portfolio companies
     </Headline>
 
     <div style={{height: 26}} />
