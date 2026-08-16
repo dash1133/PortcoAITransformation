@@ -360,7 +360,9 @@ export const ThumbTitleLight: React.FC = () => (
 // face is the single biggest lever on click-through for founder-led B2B, so
 // the type gives up a third of the frame to make room for it.
 
-export const ThumbTitlePhoto: React.FC = () => (
+export const ThumbTitlePhoto: React.FC<{src?: string}> = ({
+  src = 'dash.png',
+}) => (
   <Frame>
     {/* Warm pool behind the shoulders so the cutout doesn't float. */}
     <AbsoluteFill
@@ -381,7 +383,7 @@ export const ThumbTitlePhoto: React.FC = () => (
       }}
     >
       <Img
-        src={staticFile('dash.png')}
+        src={staticFile(src)}
         style={{height: 700, width: 'auto', display: 'block'}}
       />
     </div>

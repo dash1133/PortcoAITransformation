@@ -40,5 +40,12 @@ export const RemotionRoot: React.FC = () => (
     <Still id="ThumbTitleDark" component={ThumbTitleDark} {...THUMB_SIZE} />
     <Still id="ThumbTitleLight" component={ThumbTitleLight} {...THUMB_SIZE} />
     <Still id="ThumbTitlePhoto" component={ThumbTitlePhoto} {...THUMB_SIZE} />
+    {/* Layout proof only — swap for the real cutout by dropping public/dash.png. */}
+    <Still
+      id="ThumbTitlePhotoProof"
+      component={ThumbTitlePhoto}
+      defaultProps={{src: 'dash-placeholder.png'}}
+      {...THUMB_SIZE}
+    />
   </>
 );
