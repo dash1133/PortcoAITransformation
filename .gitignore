@@ -1,3 +1,7 @@
 node_modules/
 out/
 .remotion/
+deck/node_modules/
+deck/*.pdf
+deck/slide-*.jpg
+deck/*.png
