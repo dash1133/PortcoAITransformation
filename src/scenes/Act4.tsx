@@ -15,7 +15,7 @@ const ModelCard: React.FC<{
   title: string;
   body: string;
 }> = ({delay, n, title, body}) => (
-  <Rise delay={delay} distance={26} dur={24}>
+  <Rise delay={delay} distance={26} dur={24} style={{flex: 1, display: 'flex'}}>
     <div
       style={{
         flex: 1,
@@ -23,7 +23,6 @@ const ModelCard: React.FC<{
         border: `2px solid ${COLORS.orange}`,
         borderRadius: 14,
         padding: '30px 30px 34px',
-        height: '100%',
       }}
     >
       <div
@@ -155,15 +154,23 @@ export const SceneRecap: React.FC = () => (
     <Rise delay={24} distance={18}>
       <div
         style={{
-          fontSize: 60,
+          fontSize: 36,
+          fontWeight: 400,
+          color: COLORS.inkSoft,
+          marginBottom: 10,
+        }}
+      >
+        Don&rsquo;t scatter efforts and funds
+      </div>
+      <div
+        style={{
+          fontSize: 68,
           fontWeight: 700,
-          letterSpacing: -1.4,
-          lineHeight: 1.12,
+          letterSpacing: -1.6,
+          lineHeight: 1.1,
           color: COLORS.ink,
         }}
       >
-        Don&rsquo;t scatter efforts and funds.
-        <br />
         Build a strategic AI asset
       </div>
     </Rise>
@@ -204,7 +211,7 @@ export const SceneRecap: React.FC = () => (
           Impact
         </span>
         <span style={{fontSize: 40, fontWeight: 700, color: COLORS.white}}>
-          Profitable growth and exit value
+          Profitable growth and higher exit value
         </span>
       </div>
     </Rise>
