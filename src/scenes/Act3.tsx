@@ -322,7 +322,7 @@ export const SceneCaseStudy: React.FC = () => (
       heads="none"
       d="M 360 382 L 360 434 M 960 382 L 960 434 M 1560 382 L 1560 434 M 360 434 L 1560 434"
     />
-    <Connector delay={222} id="cs-in" heads="end" d="M 960 434 L 960 470" />
+    <Connector delay={222} id="cs-in" heads="end" d="M 960 434 L 960 460" />
 
     <div style={{position: 'absolute', left: 660, top: 476, width: 600}}>
       <Rise delay={222} distance={20} dur={24}>
@@ -343,9 +343,9 @@ export const SceneCaseStudy: React.FC = () => (
       </Rise>
     </div>
 
-    <Connector delay={282} id="cs-out" d="M 960 570 L 960 626" />
+    <Connector delay={282} id="cs-out" d="M 960 578 L 960 634" />
 
-    <div style={{position: 'absolute', left: 610, top: 630, width: 700}}>
+    <div style={{position: 'absolute', left: 610, top: 648, width: 700}}>
       <Rise delay={288} distance={16} dur={20}>
         <div
           style={{
@@ -391,7 +391,7 @@ const ARCH = {
   bx: 150,
   by: 250,
   bw: 1080,
-  bh: 500,
+  bh: 520,
   ix: 200,
   iw: 980,
   workflowsY: 300,
@@ -448,6 +448,7 @@ const OutsideBox: React.FC<{
 const CoreChip: React.FC<{children: React.ReactNode}> = ({children}) => (
   <span
     style={{
+      display: 'inline-block',
       border: `1.5px solid ${COLORS.orange}`,
       borderRadius: 999,
       padding: '9px 20px',
@@ -623,9 +624,9 @@ export const SceneArchitecture: React.FC = () => {
         sub="ERP · CRM · HCM · document stores — governed, RBAC-scoped, audited"
       />
 
-      <Connector delay={1000} id="wf" d="M 690 452 L 690 494" />
-      <Connector delay={1000} id="ppai" d="M 1186 605 L 1394 605" />
-      <Connector delay={1040} id="sys" d="M 690 850 L 690 722" />
+      <Connector delay={1000} id="wf" d="M 690 452 L 690 489" />
+      <Connector delay={1000} id="ppai" d="M 1194 605 L 1386 605" />
+      <Connector delay={1040} id="sys" d="M 690 842 L 690 733" />
     </Stage>
   );
 };

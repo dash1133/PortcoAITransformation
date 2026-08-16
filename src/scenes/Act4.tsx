@@ -162,7 +162,7 @@ export const SceneRecap: React.FC = () => (
           color: COLORS.ink,
         }}
       >
-        Don&rsquo;t get scattered.
+        Don&rsquo;t scatter efforts and funds.
         <br />
         Build a strategic AI asset
       </div>

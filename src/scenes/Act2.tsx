@@ -253,56 +253,45 @@ export const SceneDeliver: React.FC = () => (
     </Rise>
     <div style={{height: 56}} />
 
-    <div style={{display: 'flex', gap: 70, alignItems: 'center'}}>
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 40,
-        }}
-      >
-        <Feature
-          delay={230}
-          n="01"
-          title="Prioritized workflows"
-          body="that drive profitable growth"
-        />
-        <Feature
-          delay={415}
-          n="02"
-          title="One platform"
-          body="your tools, knowledge and templates — one connection to your core systems"
-        />
-        <Feature
-          delay={610}
-          n="03"
-          title="Model-agnostic"
-          body="stay on top of every AI wave, never locked to one vendor"
-        />
-      </div>
-
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 40,
-        }}
-      >
-        <Feature
-          delay={800}
-          n="04"
-          title="Cost-managed"
-          body="token spend never outruns the work it replaces"
-        />
-        <Feature
-          delay={975}
-          n="05"
-          title="Secure by design"
-          body="every new build inherits it"
-        />
-      </div>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        columnGap: 70,
+        rowGap: 44,
+        alignItems: 'start',
+      }}
+    >
+      <Feature
+        delay={230}
+        n="01"
+        title="Prioritized workflows"
+        body="that drive profitable growth"
+      />
+      <Feature
+        delay={380}
+        n="02"
+        title="One platform"
+        body="your tools, knowledge and templates — one connection to your core systems"
+      />
+      <Feature
+        delay={540}
+        n="03"
+        title="Model-agnostic"
+        body="stay on top of every AI wave, never locked to one vendor"
+      />
+      <Feature
+        delay={700}
+        n="04"
+        title="Cost-managed"
+        body="token spend never outruns the work it replaces"
+      />
+      <Feature
+        delay={860}
+        n="05"
+        title="Secure by design"
+        body="every new build inherits it"
+      />
     </div>
   </Stage>
 );
