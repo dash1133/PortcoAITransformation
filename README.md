@@ -22,6 +22,12 @@ The script separates every scene with a `<break time="1.5s" />` tag. Those gaps
 are load-bearing: `scripts/sync-audio.mjs` finds them and derives the scene
 timings from the real read, so the animation always lands on the words.
 
+If the voice ignores the break tags — Eleven v3 reinterprets them and renders
+one continuous read — the script falls back automatically. It takes every
+natural sentence pause as a candidate boundary and picks the ten that make the
+per-scene speaking rate most uniform, given each scene's known word count. Cuts
+still land inside real silence, so nothing is clipped mid-word.
+
 ## Build
 
 ```bash
@@ -39,10 +45,12 @@ node scripts/sync-audio.mjs public/voiceover.mp3
 npx remotion render FilmWithAudio out/infinite-possibilities.mp4
 ```
 
-If `sync-audio.mjs` reports a gap-count mismatch, loosen the threshold:
+The noise floor and the minimum break length are both tunable, and the silent
+tail held under the sign-off card defaults to 2s:
 
 ```bash
 node scripts/sync-audio.mjs public/voiceover.mp3 -35dB 0.9
+TAIL_SECONDS=3 node scripts/sync-audio.mjs public/voiceover.mp3
 ```
 
 ## Layout of the code

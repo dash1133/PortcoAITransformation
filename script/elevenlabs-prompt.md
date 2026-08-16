@@ -123,9 +123,17 @@ the cut. That is what makes the sync step below sufficient on its own.
    re-time all eleven scenes to your actual read, and render the final with sound.
 
 **If the break tags get ignored** by the voice you pick (some handle them
-inconsistently): leave a blank line between scenes instead and tell me — I'll
-fall back to detecting natural sentence pauses, slightly less precise but
-workable.
+inconsistently), nothing breaks — `scripts/sync-audio.mjs` detects the
+situation and falls back to natural sentence pauses, choosing the ten
+boundaries that keep the per-scene speaking rate most uniform against the word
+counts in the table above. Slightly less precise than true breaks, but the cuts
+still land in real silence.
+
+> **Note on the current take.** The delivered voiceover (Alexandra,
+> Eleven v3, 205s) is one continuous read — v3 reinterpreted the `<break>`
+> tags, so the longest gap in the file is 0.78s. It was synced with the pause
+> fallback. If you want frame-exact scene breaks on a future take, generate
+> with **Multilingual v2**, which honours the tags literally.
 
 **If you dislike the read**, regenerate the whole block rather than patching one
 scene — a single continuous take keeps tone and pacing consistent, and
