@@ -1,9 +1,10 @@
 # ElevenLabs v3 — Voiceover Generation Package (v2, two takes)
 ## Infinite Possibilities — PortCo Marketing Film
 
-**Eleven scenes · 476 words · two generations.** The pacing markup is the main
-change — 39 ellipses cut down to 16. The only copy change is scene 6's opening,
-which now names the architecture directly (Dash, 16 Aug).
+**Eleven scenes · 470 words (Take A 264, Take B 206) · two generations.** The pacing markup is the main
+change — 39 ellipses cut down to 16. Copy edits from Dash (16 Aug): scene 6 now
+opens by naming the architecture, and scene 7 says *"built their AI Core"* where
+it used to say *"beneath them, one Core."*
 
 ### Why this version exists
 
@@ -19,8 +20,8 @@ Measured on the last take:
 The voice was never reading slowly. The pauses were mine: 39 ellipses plus 10
 break tags accounted for roughly 49 of those 66 silent seconds. This version
 keeps only the 16 ellipses that carry meaning and drops the 23 that were
-decoration. Expected runtime **≈ 4:05**, at the same speaking rate (the new
-scene-6 opening adds four words, about 1.7s).
+decoration. Expected runtime **≈ 4:07**, at the same speaking rate (the 16 Aug
+copy edits add eight words, about 3.4s).
 
 A side benefit worth knowing: with the filler ellipses gone, the remaining
 scene-boundary gaps stand well clear of the in-sentence pauses, so silence
@@ -82,7 +83,7 @@ where the last take began drifting — measuring the two halves separately stops
 any error in the first half from propagating into the second.
 
 ```
-[warm] Take a heavy-equipment service business. We mapped their top five processes — warranty recovery, procurement and AP, quote-to-cash, bay operations, parts and inventory. … Beneath them, one Core: connectors into their ERP, CRM and OEM warranty portals, their warranty policy knowledge, their claim and appeal templates. … [serious] Month three of twenty-four. Warranty receivables is live, and one and a half million dollars of stuck claims is now visible, and being worked. … [confident] The other four are sequenced behind it — each one faster, because the Core is already there.
+[warm] Take a heavy-equipment service business. We mapped their top five processes — warranty recovery, procurement and AP, quote-to-cash, bay operations, parts and inventory. … And built their AI Core: connectors into their ERP, CRM and OEM warranty portals, their warranty policy knowledge, their claim and appeal templates. … [serious] Month three of twenty-four. Warranty receivables is live, and one and a half million dollars of stuck claims is now visible, and being worked. … [confident] The other four are sequenced behind it — each one faster, because the Enterprise AI Core is already there.
 
 <break time="1.5s" />
 
@@ -90,7 +91,7 @@ any error in the first half from propagating into the second.
 
 <break time="1.5s" />
 
-[warm] We'll structure it your way. A dedicated AI Pod. Targeted staff augmentation. Or build-operate-transfer — we run it, then hand it over. … [serious] Whichever you choose, commitment is earned in four-week increments … never assumed. At every gate, you decide.
+[warm] We'll structure it your way. A dedicated AI Pod. Or targeted staff augmentation. Or build-operate-transfer — we run it, then hand it over. … [serious] Whichever you choose, commitment is earned in four-week increments … never assumed. At every gate, you decide.
 
 <break time="1.5s" />
 
