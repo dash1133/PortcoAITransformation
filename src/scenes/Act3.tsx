@@ -1,13 +1,88 @@
 import React from 'react';
 import {interpolate, useCurrentFrame} from 'remotion';
-import {Counter, Eyebrow, Headline, HoldOut, Rise, Stage} from '../components';
+import {Eyebrow, Headline, Rise, Stage} from '../components';
 import {BRAND_GRADIENT, COLORS} from '../theme';
 
 // ---------------------------------------------------------------------------
-// SCENE 7 · THE AI POD
-// VO: "We build it by deploying an AI Pod — a dedicated, cross-functional team
-//      embedded inside your business. Product, AI and backend engineering, UX,
-//      QA, DevOps — with our founder accountable for every outcome."
+// Shared: double-headed / single connector drawn as an SVG path
+// ---------------------------------------------------------------------------
+
+const Connector: React.FC<{
+  delay: number;
+  id: string;
+  d: string;
+  heads?: 'none' | 'end' | 'both';
+}> = ({delay, id, d, heads = 'both'}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [delay, delay + 20], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const head = <path d="M0,0 L9,4.5 L0,9 z" fill={COLORS.orange} />;
+  return (
+    <svg
+      style={{position: 'absolute', left: 0, top: 0, opacity: p}}
+      width={1920}
+      height={1080}
+    >
+      <defs>
+        <marker
+          id={`ms-${id}`}
+          markerWidth="9"
+          markerHeight="9"
+          refX="4.5"
+          refY="4.5"
+          orient="auto-start-reverse"
+        >
+          {head}
+        </marker>
+        <marker
+          id={`me-${id}`}
+          markerWidth="9"
+          markerHeight="9"
+          refX="4.5"
+          refY="4.5"
+          orient="auto"
+        >
+          {head}
+        </marker>
+      </defs>
+      <path
+        d={d}
+        fill="none"
+        stroke={COLORS.orange}
+        strokeWidth={3}
+        markerStart={heads === 'both' ? `url(#ms-${id})` : undefined}
+        markerEnd={heads === 'none' ? undefined : `url(#me-${id})`}
+      />
+    </svg>
+  );
+};
+
+/** Plain rule used for org-chart reporting lines. */
+const OrgLine: React.FC<{delay: number; d: string}> = ({delay, d}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [delay, delay + 16], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  return (
+    <svg
+      style={{position: 'absolute', left: 0, top: 0, opacity: p}}
+      width={1920}
+      height={1080}
+    >
+      <path d={d} fill="none" stroke="#D8CCC1" strokeWidth={2.5} />
+    </svg>
+  );
+};
+
+// ---------------------------------------------------------------------------
+// SCENE 6 · THE AI POD
+//
+// Roles sit under an engineering manager, who reports into the portfolio
+// company's own AI transformation team — the pod is an extension of their org,
+// not a vendor sitting alongside it. Ultimate accountability is the last beat.
 // ---------------------------------------------------------------------------
 
 const RoleChip: React.FC<{delay: number; label: string; sub: string}> = ({
@@ -15,98 +90,200 @@ const RoleChip: React.FC<{delay: number; label: string; sub: string}> = ({
   label,
   sub,
 }) => (
-  <Rise delay={delay} distance={22} dur={20}>
+  <Rise delay={delay} distance={18} dur={20}>
     <div
       style={{
         border: `2px solid ${COLORS.orange}`,
         backgroundColor: COLORS.white,
-        borderRadius: 14,
-        padding: '22px 26px',
-        minWidth: 250,
+        borderRadius: 12,
+        padding: '16px 20px',
+        width: 268,
+        textAlign: 'center',
       }}
     >
-      <div style={{fontSize: 32, fontWeight: 600, color: COLORS.ink}}>
+      <div style={{fontSize: 28, fontWeight: 600, color: COLORS.ink}}>
         {label}
       </div>
-      <div style={{fontSize: 23, fontWeight: 300, color: COLORS.inkMuted}}>
+      <div style={{fontSize: 21, fontWeight: 300, color: COLORS.inkMuted}}>
         {sub}
       </div>
     </div>
   </Rise>
 );
 
+const ROLES = [
+  {label: 'Product', sub: 'technical PM'},
+  {label: 'AI + Backend', sub: 'pipelines & services'},
+  {label: 'UX + Frontend', sub: 'design & build'},
+  {label: 'QA', sub: 'test & automation'},
+  {label: 'DevOps', sub: 'infra & CI/CD'},
+];
+
 export const ScenePod: React.FC = () => (
-  <Stage tone="light" padding={140}>
-    <Eyebrow delay={4}>How we deliver</Eyebrow>
-    <div style={{height: 40}} />
-    <Headline delay={30} size={72}>
-      A dedicated AI Pod,
-      <br />
-      embedded in your business.
-    </Headline>
-
-    <div style={{height: 66}} />
-
-    <Rise delay={130} distance={18}>
-      <div
-        style={{
-          display: 'inline-block',
-          background: BRAND_GRADIENT,
-          borderRadius: 14,
-          padding: '20px 34px',
-        }}
-      >
-        <div style={{fontSize: 32, fontWeight: 700, color: COLORS.white}}>
-          Founder &amp; CEO — accountable for every outcome
+  <Stage tone="light" padding={0}>
+    <div style={{position: 'absolute', left: 130, top: 62}}>
+      <Eyebrow delay={4}>How we deliver</Eyebrow>
+      <div style={{height: 26}} />
+      <Rise delay={26} distance={16}>
+        <div
+          style={{
+            fontSize: 54,
+            fontWeight: 700,
+            letterSpacing: -1.2,
+            color: COLORS.ink,
+          }}
+        >
+          A dedicated AI Pod, embedded in your team
         </div>
-      </div>
-    </Rise>
+      </Rise>
+    </div>
 
-    <div style={{height: 40}} />
+    {/* reporting lines are drawn first so the cards paint over them */}
+    <OrgLine delay={168} d="M 960 326 L 960 388" />
+    <OrgLine
+      delay={232}
+      d="M 960 462 L 960 502 M 372 502 L 1548 502 M 372 502 L 372 536 M 666 502 L 666 536 M 960 502 L 960 536 M 1254 502 L 1254 536 M 1548 502 L 1548 536"
+    />
 
-    <div style={{display: 'flex', gap: 22, flexWrap: 'wrap'}}>
-      <RoleChip delay={210} label="Product" sub="Technical PM" />
-      <RoleChip delay={240} label="AI + Backend" sub="pipelines & services" />
-      <RoleChip delay={270} label="UX + Frontend" sub="design & build" />
-      <RoleChip delay={300} label="QA" sub="test & automation" />
-      <RoleChip delay={330} label="DevOps" sub="infra & CI/CD" />
+    {/* client org at the top of the reporting line */}
+    <div style={{position: 'absolute', left: 660, top: 262, width: 600}}>
+      <Rise delay={110} distance={16} dur={22}>
+        <div
+          style={{
+            border: '2px dashed #C4B9AE',
+            backgroundColor: '#EFE9E3',
+            borderRadius: 12,
+            padding: '16px 26px',
+            textAlign: 'center',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 26,
+              fontWeight: 600,
+              color: COLORS.inkSoft,
+              letterSpacing: 1.4,
+              textTransform: 'uppercase',
+            }}
+          >
+            PortCo AI Transformation Team
+          </div>
+        </div>
+      </Rise>
+    </div>
+
+    {/* engineering manager */}
+    <div style={{position: 'absolute', left: 700, top: 388, width: 520}}>
+      <Rise delay={175} distance={16} dur={22}>
+        <div
+          style={{
+            background: BRAND_GRADIENT,
+            borderRadius: 12,
+            padding: '18px 26px',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{fontSize: 32, fontWeight: 700, color: COLORS.white}}>
+            Engineering Manager
+          </div>
+        </div>
+      </Rise>
+    </div>
+
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 534,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 26,
+      }}
+    >
+      {ROLES.map((r, i) => (
+        <RoleChip key={r.label} delay={246 + i * 26} {...r} />
+      ))}
+    </div>
+
+    {/* the last point */}
+    <div style={{position: 'absolute', left: 130, right: 130, top: 760}}>
+      <Rise delay={420} distance={18}>
+        <div
+          style={{
+            borderTop: `3px solid ${COLORS.orange}`,
+            paddingTop: 26,
+            display: 'flex',
+            alignItems: 'baseline',
+            gap: 20,
+          }}
+        >
+          <span style={{fontSize: 40, fontWeight: 700, color: COLORS.ink}}>
+            Founder &amp; CEO
+          </span>
+          <span style={{fontSize: 36, fontWeight: 300, color: COLORS.inkSoft}}>
+            &mdash; ultimate accountability for every outcome
+          </span>
+        </div>
+      </Rise>
     </div>
   </Stage>
 );
 
 // ---------------------------------------------------------------------------
-// SCENE 7b · PROOF AT YOUR SIZE  (mid-market case study)
-// VO: "And it works at your scale. For one mid-market portfolio company, we
-//      unified three disconnected systems into a single interface. Answers that
-//      used to take hours now take seconds — and they doubled their new client
-//      wins."
+// SCENE 7 · CASE STUDY
+// Three disconnected sources answered by one agent, plus the outcomes.
 // ---------------------------------------------------------------------------
 
-const BigStat: React.FC<{
-  delay: number;
-  value: React.ReactNode;
-  label: string;
-}> = ({delay, value, label}) => (
-  <Rise delay={delay} distance={28} dur={24}>
-    <div style={{flex: 1}}>
+const SourceBox: React.FC<{delay: number; left: number; label: string}> = ({
+  delay,
+  left,
+  label,
+}) => (
+  <div style={{position: 'absolute', left, top: 300, width: 340}}>
+    <Rise delay={delay} distance={16} dur={20}>
       <div
         style={{
-          fontSize: 120,
+          border: '2px dashed #C4B9AE',
+          backgroundColor: '#EFE9E3',
+          borderRadius: 12,
+          padding: '18px 20px',
+          textAlign: 'center',
+        }}
+      >
+        <div style={{fontSize: 27, fontWeight: 600, color: COLORS.inkSoft}}>
+          {label}
+        </div>
+      </div>
+    </Rise>
+  </div>
+);
+
+const Outcome: React.FC<{delay: number; value: string; label: string}> = ({
+  delay,
+  value,
+  label,
+}) => (
+  <Rise delay={delay} distance={22} dur={22} style={{flex: 1}}>
+    <div style={{textAlign: 'center'}}>
+      <div
+        style={{
+          fontSize: 52,
           fontWeight: 700,
-          letterSpacing: -4,
-          lineHeight: 1,
+          letterSpacing: -1.6,
           color: COLORS.orange,
+          lineHeight: 1.05,
+          whiteSpace: 'nowrap',
         }}
       >
         {value}
       </div>
       <div
         style={{
-          fontSize: 29,
+          fontSize: 24,
           fontWeight: 400,
           color: COLORS.inkSoft,
-          marginTop: 16,
-          lineHeight: 1.3,
+          marginTop: 8,
         }}
       >
         {label}
@@ -116,66 +293,109 @@ const BigStat: React.FC<{
 );
 
 export const SceneCaseStudy: React.FC = () => (
-  <Stage tone="light" padding={150}>
-    <Eyebrow delay={4}>Proven at mid-market scale</Eyebrow>
-    <div style={{height: 44}} />
-    <Headline delay={26} size={62}>
-      One portfolio company.
-      <br />
-      Three systems, unified.
-    </Headline>
+  <Stage tone="light" padding={0}>
+    <div style={{position: 'absolute', left: 130, top: 62}}>
+      <Eyebrow delay={4}>Case study</Eyebrow>
+      <div style={{height: 24}} />
+      <Rise delay={26} distance={16}>
+        <div
+          style={{
+            fontSize: 52,
+            fontWeight: 700,
+            letterSpacing: -1.2,
+            color: COLORS.ink,
+          }}
+        >
+          Three disconnected systems, one Planner agent
+        </div>
+      </Rise>
+    </div>
 
-    <div style={{height: 74}} />
+    <SourceBox delay={120} left={190} label="QuickBase" />
+    <SourceBox delay={146} left={790} label="Event Documents" />
+    <SourceBox delay={172} left={1390} label="Policy Library" />
 
-    <div style={{display: 'flex', gap: 80}}>
-      <BigStat
-        delay={190}
-        value={<Counter to={3} delay={190} dur={26} format={false} />}
-        label="disconnected systems unified into a single interface"
-      />
-      <BigStat
-        delay={280}
-        value="Hours → seconds"
-        label="time to answer an operational question"
-      />
-      <BigStat delay={370} value="2×" label="new client wins" />
+    {/* sources funnel into the agent */}
+    <Connector
+      delay={214}
+      id="cs-bus"
+      heads="none"
+      d="M 360 382 L 360 434 M 960 382 L 960 434 M 1560 382 L 1560 434 M 360 434 L 1560 434"
+    />
+    <Connector delay={222} id="cs-in" heads="end" d="M 960 434 L 960 470" />
+
+    <div style={{position: 'absolute', left: 660, top: 476, width: 600}}>
+      <Rise delay={222} distance={20} dur={24}>
+        <div
+          style={{
+            border: `3px solid ${COLORS.orange}`,
+            backgroundColor: COLORS.white,
+            borderRadius: 12,
+            padding: '20px 26px',
+            textAlign: 'center',
+            boxShadow: '0 10px 40px rgba(235,99,54,0.16)',
+          }}
+        >
+          <div style={{fontSize: 40, fontWeight: 700, color: COLORS.orange}}>
+            Planner Agent
+          </div>
+        </div>
+      </Rise>
+    </div>
+
+    <Connector delay={282} id="cs-out" d="M 960 570 L 960 626" />
+
+    <div style={{position: 'absolute', left: 610, top: 630, width: 700}}>
+      <Rise delay={288} distance={16} dur={20}>
+        <div
+          style={{
+            backgroundColor: COLORS.cream,
+            border: `2px solid ${COLORS.orange}`,
+            borderRadius: 12,
+            padding: '16px 24px',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{fontSize: 30, fontWeight: 600, color: COLORS.ink}}>
+            Staff ask in plain language
+          </div>
+        </div>
+      </Rise>
+    </div>
+
+    <div
+      style={{
+        position: 'absolute',
+        left: 150,
+        right: 150,
+        top: 790,
+        display: 'flex',
+        gap: 40,
+      }}
+    >
+      <Outcome delay={350} value="3 → 1" label="systems unified into one interface" />
+      <Outcome delay={386} value="Hours → seconds" label="time to answer" />
+      <Outcome delay={422} value="2×" label="new client wins" />
     </div>
   </Stage>
 );
 
 // ---------------------------------------------------------------------------
-// SCENE 8 · WHAT WE ACTUALLY BUILD  (the architecture — hero scene)
+// SCENE 8 · THE ARCHITECTURE OF A STRATEGIC AI ASSET
 //
-// Layout note: the two things that sit OUTSIDE the boundary are placed so that
-// each connects to the Enterprise AI Core with a single straight segment —
-// systems below it, personal-productivity AI beside it. An earlier version put
-// personal AI directly above the boundary, which forced its connector to wrap
-// around the outside and collide with both the boundary edge and its label.
-//
-// Beat map, following the VO exactly:
-//   0.0s  title
-//   4.0s  Custom Workflows appears
-//   9.0s  Enterprise AI Core appears with its component chips
-//  20.0s  the boundary draws itself — "what we build · what you own"
-//  25.0s  the two outside boxes fade in
-//  33.0s  bidirectional connectors land
-//  44.0s  kicker card
+// The two things outside the boundary are positioned so each reaches the Core
+// with one straight segment: systems below, personal-productivity AI beside.
 // ---------------------------------------------------------------------------
 
 const ARCH = {
-  // the owned boundary
   bx: 150,
   by: 250,
   bw: 1080,
   bh: 500,
-  // boxes inside it
   ix: 200,
   iw: 980,
   workflowsY: 300,
   coreY: 500,
-  // centre line of the inside column — everything below hangs off it
-  cx: 690,
-  coreMidY: 605,
 };
 
 const OutsideBox: React.FC<{
@@ -225,58 +445,6 @@ const OutsideBox: React.FC<{
   </div>
 );
 
-/** Double-headed connector between two boxes. */
-const BiPath: React.FC<{delay: number; id: string; d: string}> = ({
-  delay,
-  id,
-  d,
-}) => {
-  const frame = useCurrentFrame();
-  const p = interpolate(frame, [delay, delay + 20], [0, 1], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  const head = <path d="M0,0 L9,4.5 L0,9 z" fill={COLORS.orange} />;
-  return (
-    <svg
-      style={{position: 'absolute', left: 0, top: 0, opacity: p}}
-      width={1920}
-      height={1080}
-    >
-      <defs>
-        <marker
-          id={`ms-${id}`}
-          markerWidth="9"
-          markerHeight="9"
-          refX="4.5"
-          refY="4.5"
-          orient="auto-start-reverse"
-        >
-          {head}
-        </marker>
-        <marker
-          id={`me-${id}`}
-          markerWidth="9"
-          markerHeight="9"
-          refX="4.5"
-          refY="4.5"
-          orient="auto"
-        >
-          {head}
-        </marker>
-      </defs>
-      <path
-        d={d}
-        fill="none"
-        stroke={COLORS.orange}
-        strokeWidth={3}
-        markerStart={`url(#ms-${id})`}
-        markerEnd={`url(#me-${id})`}
-      />
-    </svg>
-  );
-};
-
 const CoreChip: React.FC<{children: React.ReactNode}> = ({children}) => (
   <span
     style={{
@@ -316,196 +484,150 @@ export const SceneArchitecture: React.FC = () => {
 
   return (
     <Stage tone="light" padding={0}>
-      <HoldOut at={1320} dur={22}>
-        <div style={{position: 'absolute', left: 150, top: 66}}>
-          <Rise delay={2} distance={14}>
-            <div
-              style={{
-                fontSize: 50,
-                fontWeight: 700,
-                letterSpacing: -1,
-                color: COLORS.ink,
-              }}
-            >
-              What we build — and where the line sits.
-            </div>
-          </Rise>
-        </div>
+      <div style={{position: 'absolute', left: 150, top: 66}}>
+        <Rise delay={2} distance={14}>
+          <div
+            style={{
+              fontSize: 50,
+              fontWeight: 700,
+              letterSpacing: -1,
+              color: COLORS.ink,
+            }}
+          >
+            The architecture of a strategic AI asset
+          </div>
+        </Rise>
+      </div>
 
-        {/* THE BOUNDARY — draws itself */}
-        <svg
-          style={{position: 'absolute', left: 0, top: 0}}
-          width={1920}
-          height={1080}
-        >
-          <rect
-            x={ARCH.bx}
-            y={ARCH.by}
-            width={ARCH.bw}
-            height={ARCH.bh}
-            rx={18}
-            fill="none"
-            stroke={COLORS.orange}
-            strokeWidth={4}
-            strokeDasharray={perimeter}
-            strokeDashoffset={draw}
-          />
-        </svg>
-
-        <div
-          style={{
-            position: 'absolute',
-            left: ARCH.bx + 32,
-            top: ARCH.by - 19,
-            opacity: label,
-            backgroundColor: COLORS.offWhite,
-            padding: '0 14px',
-            fontSize: 23,
-            fontWeight: 700,
-            letterSpacing: 2.5,
-            textTransform: 'uppercase',
-            color: COLORS.orange,
-          }}
-        >
-          What we build · What you own
-        </div>
-
-        {/* INSIDE · custom workflows */}
-        <div
-          style={{
-            position: 'absolute',
-            left: ARCH.ix,
-            top: ARCH.workflowsY,
-            width: ARCH.iw,
-          }}
-        >
-          <Rise delay={120} distance={20} dur={24}>
-            <div
-              style={{
-                border: `2px solid ${COLORS.orange}`,
-                backgroundColor: COLORS.white,
-                borderRadius: 12,
-                padding: '20px 30px',
-                textAlign: 'center',
-              }}
-            >
-              <div style={{fontSize: 38, fontWeight: 700, color: COLORS.ink}}>
-                Custom Workflows
-              </div>
-              <div style={{fontSize: 25, fontWeight: 300, color: COLORS.inkSoft}}>
-                the priority workflows that drive profit
-              </div>
-            </div>
-          </Rise>
-        </div>
-
-        {/* INSIDE · enterprise AI core */}
-        <div
-          style={{
-            position: 'absolute',
-            left: ARCH.ix,
-            top: ARCH.coreY,
-            width: ARCH.iw,
-          }}
-        >
-          <Rise delay={270} distance={20} dur={26}>
-            <div
-              style={{
-                border: `3px solid ${COLORS.orange}`,
-                backgroundColor: COLORS.white,
-                borderRadius: 12,
-                padding: '22px 30px 26px',
-                textAlign: 'center',
-                boxShadow: '0 10px 40px rgba(235,99,54,0.16)',
-              }}
-            >
-              <div style={{fontSize: 42, fontWeight: 700, color: COLORS.orange}}>
-                Enterprise AI Core
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 12,
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
-                  marginTop: 18,
-                }}
-              >
-                {CHIPS.map((c, i) => (
-                  <Rise key={c} delay={330 + i * 26} distance={10} dur={18}>
-                    <CoreChip>{c}</CoreChip>
-                  </Rise>
-                ))}
-              </div>
-            </div>
-          </Rise>
-        </div>
-
-        {/* OUTSIDE · personal productivity AI, beside the Core */}
-        <OutsideBox
-          delay={760}
-          left={1400}
-          top={512}
-          width={400}
-          title="Personal Productivity AI Platforms"
-          sub="Claude · Copilot · ChatGPT Enterprise"
+      <svg
+        style={{position: 'absolute', left: 0, top: 0}}
+        width={1920}
+        height={1080}
+      >
+        <rect
+          x={ARCH.bx}
+          y={ARCH.by}
+          width={ARCH.bw}
+          height={ARCH.bh}
+          rx={18}
+          fill="none"
+          stroke={COLORS.orange}
+          strokeWidth={4}
+          strokeDasharray={perimeter}
+          strokeDashoffset={draw}
         />
+      </svg>
 
-        {/* OUTSIDE · enterprise systems, below the Core */}
-        <OutsideBox
-          delay={820}
-          left={250}
-          top={856}
-          width={880}
-          title="Enterprise Systems & Data"
-          sub="ERP · CRM · HCM · document stores — governed, RBAC-scoped, audited"
-        />
+      <div
+        style={{
+          position: 'absolute',
+          left: ARCH.bx + 32,
+          top: ARCH.by - 19,
+          opacity: label,
+          backgroundColor: COLORS.offWhite,
+          padding: '0 14px',
+          fontSize: 23,
+          fontWeight: 700,
+          letterSpacing: 2.5,
+          textTransform: 'uppercase',
+          color: COLORS.orange,
+        }}
+      >
+        What we build · What you own
+      </div>
 
-        {/* connectors — each a single straight segment */}
-        <BiPath delay={1000} id="wf" d="M 690 452 L 690 494" />
-        <BiPath delay={1000} id="ppai" d="M 1186 605 L 1394 605" />
-        <BiPath delay={1040} id="sys" d="M 690 850 L 690 722" />
-      </HoldOut>
+      <div
+        style={{
+          position: 'absolute',
+          left: ARCH.ix,
+          top: ARCH.workflowsY,
+          width: ARCH.iw,
+        }}
+      >
+        <Rise delay={120} distance={20} dur={24}>
+          <div
+            style={{
+              border: `2px solid ${COLORS.orange}`,
+              backgroundColor: COLORS.white,
+              borderRadius: 12,
+              padding: '20px 30px',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{fontSize: 38, fontWeight: 700, color: COLORS.ink}}>
+              Custom Workflows
+            </div>
+            <div style={{fontSize: 25, fontWeight: 300, color: COLORS.inkSoft}}>
+              the priority workflows that drive profit
+            </div>
+          </div>
+        </Rise>
+      </div>
 
-      <ArchKicker />
+      <div
+        style={{
+          position: 'absolute',
+          left: ARCH.ix,
+          top: ARCH.coreY,
+          width: ARCH.iw,
+        }}
+      >
+        <Rise delay={270} distance={20} dur={26}>
+          <div
+            style={{
+              border: `3px solid ${COLORS.orange}`,
+              backgroundColor: COLORS.white,
+              borderRadius: 12,
+              padding: '22px 30px 26px',
+              textAlign: 'center',
+              boxShadow: '0 10px 40px rgba(235,99,54,0.16)',
+            }}
+          >
+            <div style={{fontSize: 42, fontWeight: 700, color: COLORS.orange}}>
+              Enterprise AI Core
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                gap: 12,
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                marginTop: 18,
+              }}
+            >
+              {CHIPS.map((c, i) => (
+                <Rise key={c} delay={330 + i * 26} distance={10} dur={18}>
+                  <CoreChip>{c}</CoreChip>
+                </Rise>
+              ))}
+            </div>
+          </div>
+        </Rise>
+      </div>
+
+      <OutsideBox
+        delay={760}
+        left={1400}
+        top={512}
+        width={400}
+        title="Personal Productivity AI Platforms"
+        sub="Claude · Copilot · ChatGPT Enterprise"
+      />
+
+      <OutsideBox
+        delay={820}
+        left={250}
+        top={856}
+        width={880}
+        title="Enterprise Systems & Data"
+        sub="ERP · CRM · HCM · document stores — governed, RBAC-scoped, audited"
+      />
+
+      <Connector delay={1000} id="wf" d="M 690 452 L 690 494" />
+      <Connector delay={1000} id="ppai" d="M 1186 605 L 1394 605" />
+      <Connector delay={1040} id="sys" d="M 690 850 L 690 722" />
     </Stage>
   );
 };
 
-const ArchKicker: React.FC = () => {
-  const frame = useCurrentFrame();
-  const p = interpolate(frame, [1348, 1382], [0, 1], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  if (frame < 1344) return null;
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 150,
-        opacity: p,
-      }}
-    >
-      <div
-        style={{
-          fontSize: 78,
-          fontWeight: 700,
-          letterSpacing: -1.8,
-          lineHeight: 1.2,
-          color: COLORS.ink,
-          textAlign: 'center',
-          transform: `translateY(${(1 - p) * 18}px)`,
-        }}
-      >
-        The tools are how you talk to it.
-        <br />
-        <span style={{color: COLORS.orange}}>The Core is what you own.</span>
-      </div>
-    </div>
-  );
-};
+export {Headline};

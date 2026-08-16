@@ -1,116 +1,128 @@
 import React from 'react';
 import {interpolate, useCurrentFrame} from 'remotion';
-import {Eyebrow, Headline, HoldOut, Logo, Rise, Stage} from '../components';
+import {Eyebrow, Logo, Rise, Stage} from '../components';
 import {BRAND_GRADIENT, COLORS} from '../theme';
 
 // ---------------------------------------------------------------------------
-// SCENE 9 · WHAT YOU'RE LEFT WITH  (build → operate → transfer, + gates)
+// SCENE 9 · FLEXIBLE OPERATING MODELS
+// The AI Pod is one of three ways to engage — and whichever is chosen, the
+// commitment is earned in four-week increments rather than assumed up front.
 // ---------------------------------------------------------------------------
 
-const Step: React.FC<{delay: number; n: number; label: string}> = ({
-  delay,
-  n,
-  label,
-}) => (
-  <Rise delay={delay} distance={24} dur={22}>
-    <div style={{display: 'flex', flexDirection: 'column', gap: 18, flex: 1}}>
+const ModelCard: React.FC<{
+  delay: number;
+  n: string;
+  title: string;
+  body: string;
+}> = ({delay, n, title, body}) => (
+  <Rise delay={delay} distance={26} dur={24}>
+    <div
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.white,
+        border: `2px solid ${COLORS.orange}`,
+        borderRadius: 14,
+        padding: '30px 30px 34px',
+        height: '100%',
+      }}
+    >
       <div
         style={{
-          width: 62,
-          height: 62,
-          borderRadius: '50%',
-          background: BRAND_GRADIENT,
-          color: COLORS.white,
-          fontSize: 30,
+          fontSize: 21,
           fontWeight: 700,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          color: COLORS.white,
+          backgroundColor: COLORS.orange,
+          borderRadius: 7,
+          padding: '6px 11px',
+          display: 'inline-block',
+          marginBottom: 18,
         }}
       >
         {n}
       </div>
-      <div style={{fontSize: 52, fontWeight: 600, color: COLORS.ink}}>
-        {label}
+      <div
+        style={{
+          fontSize: 38,
+          fontWeight: 700,
+          color: COLORS.ink,
+          lineHeight: 1.15,
+          letterSpacing: -0.6,
+        }}
+      >
+        {title}
+      </div>
+      <div
+        style={{
+          fontSize: 25,
+          fontWeight: 300,
+          color: COLORS.inkSoft,
+          marginTop: 12,
+          lineHeight: 1.4,
+        }}
+      >
+        {body}
       </div>
     </div>
   </Rise>
 );
 
-export const SceneOwnership: React.FC = () => (
-  <Stage tone="light" padding={140}>
-    <HoldOut at={700} dur={20}>
-      <Eyebrow delay={4}>How it ends</Eyebrow>
-      <div style={{height: 56}} />
-
-      <div style={{display: 'flex', gap: 40}}>
-        <Step delay={80} n={1} label="We build it." />
-        <Step delay={145} n={2} label="We operate it." />
-        <Step delay={215} n={3} label="We transfer it to you." />
+export const SceneOperatingModels: React.FC = () => (
+  <Stage tone="light" padding={130}>
+    <Eyebrow delay={4}>How we engage</Eyebrow>
+    <div style={{height: 30}} />
+    <Rise delay={26} distance={16}>
+      <div
+        style={{
+          fontSize: 58,
+          fontWeight: 700,
+          letterSpacing: -1.2,
+          color: COLORS.ink,
+        }}
+      >
+        Flexible operating models
       </div>
+    </Rise>
 
-      <div style={{height: 76}} />
+    <div style={{height: 56}} />
 
-      <Rise delay={440} distance={20}>
-        <div
-          style={{
-            borderLeft: `6px solid ${COLORS.orange}`,
-            paddingLeft: 30,
-          }}
-        >
-          <div style={{fontSize: 44, fontWeight: 600, color: COLORS.ink}}>
-            Commitment earned in four-week increments.
-          </div>
-          <div style={{fontSize: 44, fontWeight: 300, color: COLORS.inkSoft}}>
-            Never assumed. At every gate, you decide.
-          </div>
+    <div style={{display: 'flex', gap: 30, alignItems: 'stretch'}}>
+      <ModelCard
+        delay={120}
+        n="01"
+        title="AI Pod"
+        body="a dedicated cross-functional team, embedded in yours"
+      />
+      <ModelCard
+        delay={220}
+        n="02"
+        title="Staff augmentation"
+        body="targeted specialists into the team you already have"
+      />
+      <ModelCard
+        delay={320}
+        n="03"
+        title="Build-operate-transfer"
+        body="we build it, run it, then hand it over to you"
+      />
+    </div>
+
+    <div style={{height: 56}} />
+
+    <Rise delay={450} distance={20}>
+      <div style={{borderLeft: `6px solid ${COLORS.orange}`, paddingLeft: 30}}>
+        <div style={{fontSize: 42, fontWeight: 600, color: COLORS.ink}}>
+          Commitment earned in four-week increments
         </div>
-      </Rise>
-    </HoldOut>
-
-    <OwnershipLanding />
+        <div style={{fontSize: 42, fontWeight: 300, color: COLORS.inkSoft}}>
+          Never assumed. At every gate, you decide.
+        </div>
+      </div>
+    </Rise>
   </Stage>
 );
 
-const OwnershipLanding: React.FC = () => {
-  const frame = useCurrentFrame();
-  const p = interpolate(frame, [730, 768], [0, 1], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  if (frame < 726) return null;
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 150,
-        opacity: p,
-      }}
-    >
-      <div
-        style={{
-          fontSize: 96,
-          fontWeight: 700,
-          letterSpacing: -2.4,
-          lineHeight: 1.16,
-          color: COLORS.ink,
-          textAlign: 'center',
-          transform: `translateY(${(1 - p) * 20}px)`,
-        }}
-      >
-        The asset{' '}
-        <span style={{color: COLORS.orange}}>outlives the engagement.</span>
-      </div>
-    </div>
-  );
-};
-
 // ---------------------------------------------------------------------------
-// SCENE 10 · THE VALUE RECAP  (rapid, rhythmic)
+// SCENE 10 · THE VALUE RECAP
 // ---------------------------------------------------------------------------
 
 const RecapLine: React.FC<{delay: number; children: React.ReactNode}> = ({
@@ -137,10 +149,10 @@ const RecapLine: React.FC<{delay: number; children: React.ReactNode}> = ({
 export const SceneRecap: React.FC = () => (
   <Stage tone="light" padding={150}>
     <div style={{display: 'flex', flexDirection: 'column', gap: 34}}>
-      <RecapLine delay={10}>Accelerate your AI program.</RecapLine>
-      <RecapLine delay={78}>Build on the right architecture.</RecapLine>
-      <RecapLine delay={150}>Move in weeks, not months.</RecapLine>
-      <RecapLine delay={218}>Never locked to a single vendor.</RecapLine>
+      <RecapLine delay={10}>Accelerate your AI program</RecapLine>
+      <RecapLine delay={78}>Build on the right architecture</RecapLine>
+      <RecapLine delay={150}>Move in weeks, not months</RecapLine>
+      <RecapLine delay={218}>Never locked to a single vendor</RecapLine>
     </div>
   </Stage>
 );
@@ -165,11 +177,11 @@ export const SceneSignoff: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           height: '100%',
-          gap: 40,
+          gap: 44,
         }}
       >
         <Rise delay={2} distance={20} dur={30}>
-          <Logo width={860} />
+          <Logo width={880} />
         </Rise>
 
         <div style={{width: 620, height: 5, backgroundColor: '#EADFD4'}}>
@@ -181,7 +193,7 @@ export const SceneSignoff: React.FC = () => {
         <Rise delay={70} distance={16}>
           <div
             style={{
-              fontSize: 40,
+              fontSize: 44,
               fontWeight: 300,
               color: COLORS.inkSoft,
               textAlign: 'center',
@@ -191,23 +203,10 @@ export const SceneSignoff: React.FC = () => {
           </div>
         </Rise>
 
-        <Rise delay={110} distance={16}>
+        <Rise delay={120} distance={14}>
           <div
             style={{
-              fontSize: 54,
-              fontWeight: 700,
-              color: COLORS.ink,
-              textAlign: 'center',
-            }}
-          >
-            Business partners first.
-          </div>
-        </Rise>
-
-        <Rise delay={150} distance={14}>
-          <div
-            style={{
-              fontSize: 34,
+              fontSize: 36,
               fontWeight: 500,
               color: COLORS.orange,
               letterSpacing: 1,
@@ -220,5 +219,3 @@ export const SceneSignoff: React.FC = () => {
     </Stage>
   );
 };
-
-export {Headline};

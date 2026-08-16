@@ -4,16 +4,19 @@
 Goal: **one continuous MP3** of the full narration, with clean, detectable
 gaps between scenes so the video can be auto-synced to the audio.
 
+**Eleven scenes → ten breaks.** (The old recommendation scene was folded into
+the thesis, so this is one scene shorter than the previous version.)
+
 ---
 
 ## 1 · Settings
 
 | Setting | Recommended | Why |
 |---|---|---|
-| **Model** | Eleven Multilingual v2 | Most stable for long-form (4 min). Use Eleven v3 only if you want more expressiveness and are willing to re-roll takes. |
+| **Model** | Eleven Multilingual v2 | Most stable for long-form. Use Eleven v3 only if you want more expressiveness and are willing to re-roll takes. |
 | **Voice** | A mature, warm, authoritative narrator. Good stock options: **Adam**, **Brian**, **George**, **Daniel** (male) · **Charlotte**, **Alice** (female) | PE/enterprise audience — credibility over energy. Avoid anything bright, young, or "ad-read." |
 | **Stability** | **50%** | Consistent across a long read without going flat. |
-| **Similarity** | **75%** | Keeps the voice identity locked over 4 minutes. |
+| **Similarity** | **75%** | Keeps the voice identity locked throughout. |
 | **Style exaggeration** | **0–15%** | Low. This is a considered brand film, not a commercial. |
 | **Speaker boost** | On | |
 | **Output format** | **MP3 192 kbps / 44.1 kHz** or higher | |
@@ -24,8 +27,8 @@ gaps between scenes so the video can be auto-synced to the audio.
 > equity operating partners and portfolio company CEOs. Authoritative and calm,
 > never salesy or hyped. Land declarative sentences with finality and a short
 > beat after each. Slightly slower than conversational pace. Treat short
-> fragments ("Your own AI platform." / "Advantage isn't bought — it's built.")
-> as deliberate, weighted statements, not list items.
+> fragments ("A purpose-built AI platform." / "Unable to scale.") as
+> deliberate, weighted statements, not list items.
 
 ---
 
@@ -45,15 +48,11 @@ We are Infinite Possibilities. We build custom AI solutions for portfolio compan
 
 <break time="1.5s" />
 
-But look inside a mid-market portfolio company today, and you find the same four things. Citizen developers building tools that never scale past their own desk. Vendors selling AI that doesn't fit your context — and doesn't create advantage. Leadership ready to invest, but unable to tell the high-value opportunities from the rest. And a CFO watching token costs climb, still waiting on the return. Plenty of solutions. Very little strategy.
+Inside most mid-market portfolio companies, you find the same four things. Citizen developers build — unable to scale. Vendors sell — unable to fit the ecosystem. Leaders want to invest — unable to determine what, and when. And tokens burn — unable to verify the return.
 
 <break time="1.5s" />
 
-Across our work with portfolio companies, we've arrived at the same recommendation every time. Not another one-off solution. Not another vendor's platform. Your own AI platform. Advantage isn't bought — it's built.
-
-<break time="1.5s" />
-
-Because what a portfolio company needs isn't another tool. It's a strategic AI asset — one that drives profitable growth, and improves exit value.
+So what does a portfolio company actually need? Not another one-off solution. Not another vendor's platform. A purpose-built AI platform. A strategic asset they own — one that drives profitable growth, and improves exit value.
 
 <break time="1.5s" />
 
@@ -61,11 +60,11 @@ We build these strategic assets for portfolio companies — by delivering a plat
 
 <break time="1.5s" />
 
-We build it by deploying an AI Pod — a dedicated, cross-functional team embedded inside your business. Product, AI and backend engineering, UX, QA, DevOps — with our founder accountable for every outcome.
+We deliver it through a dedicated AI Pod — product, AI and backend engineering, UX, QA and DevOps — led by an engineering manager, reporting into your own AI transformation team. With our founder and CEO carrying ultimate accountability for every outcome.
 
 <break time="1.5s" />
 
-And it works at your scale. For one mid-market portfolio company, we unified three disconnected systems into a single interface. Answers that used to take hours now take seconds — and they doubled their new client wins.
+Take one mid-market portfolio company. Three disconnected systems — their operational database, their event documents, and their policy library — now answered by a single Planner agent. Staff simply ask in plain language. Questions that took hours take seconds. And they doubled their new client wins.
 
 <break time="1.5s" />
 
@@ -73,7 +72,7 @@ So here's what we actually build — and where the line sits. Inside the line: t
 
 <break time="1.5s" />
 
-And this is how it ends. We build it. We operate it alongside your team. And then we transfer it to you — the platform, the standards, the knowledge, all of it. You are never asked to bet the company to find out if it works: at every gate, you decide whether we continue. So what you're left with isn't a vendor relationship. It's an asset on your side of the table — one that keeps compounding long after we're gone.
+And we'll structure it your way. A dedicated AI Pod. Targeted staff augmentation. Or build, operate and transfer — we build it, run it, then hand it over to you. Whichever model you choose, commitment is earned in four-week increments, never assumed. At every gate, you decide whether we continue.
 
 <break time="1.5s" />
 
@@ -81,7 +80,7 @@ Accelerate your AI program. Build on the right architecture from day one. Move i
 
 <break time="1.5s" />
 
-Infinite Possibilities. Business partners first. Let's build your AI advantage.
+Infinite Possibilities. Let's build your AI advantage.
 
 ---
 

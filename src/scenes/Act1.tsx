@@ -118,24 +118,9 @@ export const SceneBrand: React.FC = () => {
         <Headline delay={62} size={82}>
           Custom AI platforms for
           <br />
-          portfolio companies.
+          portfolio companies
         </Headline>
 
-        <Rise delay={128} distance={16}>
-          <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
-            <div style={{width: 70, height: 4, background: BRAND_GRADIENT}} />
-            <span
-              style={{
-                fontSize: 32,
-                fontWeight: 300,
-                color: COLORS.inkSoft,
-                fontStyle: 'italic',
-              }}
-            >
-              Software development partner for enterprise-ready custom AI
-            </span>
-          </div>
-        </Rise>
       </div>
     </Stage>
   );

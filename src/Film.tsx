@@ -4,26 +4,24 @@ import {BrandFont} from './fonts';
 import {SCENE_FRAMES, SceneId} from './timing';
 import {COLORS} from './theme';
 import {SceneBrand, SceneProof} from './scenes/Act1';
-import {
-  SceneDeliver,
-  SceneReality,
-  SceneRecommendation,
-  SceneThesis,
-} from './scenes/Act2';
+import {SceneDeliver, SceneNeeds, SceneReality} from './scenes/Act2';
 import {SceneArchitecture, SceneCaseStudy, ScenePod} from './scenes/Act3';
-import {SceneOwnership, SceneRecap, SceneSignoff} from './scenes/Act4';
+import {
+  SceneOperatingModels,
+  SceneRecap,
+  SceneSignoff,
+} from './scenes/Act4';
 
 const REGISTRY: Record<SceneId, React.FC> = {
   proof: SceneProof,
   brand: SceneBrand,
   reality: SceneReality,
-  recommendation: SceneRecommendation,
-  thesis: SceneThesis,
+  needs: SceneNeeds,
   deliver: SceneDeliver,
   pod: ScenePod,
   caseStudy: SceneCaseStudy,
   architecture: SceneArchitecture,
-  ownership: SceneOwnership,
+  operatingModels: SceneOperatingModels,
   recap: SceneRecap,
   signoff: SceneSignoff,
 };

@@ -5,7 +5,7 @@
  *   node scripts/sync-audio.mjs public/voiceover.mp3
  *
  * The ElevenLabs script inserts <break time="1.5s" /> between every scene, so
- * the MP3 contains 11 long silences separating 12 spoken blocks. This measures
+ * the MP3 contains 10 long silences separating 11 spoken blocks. This measures
  * them with ffmpeg's silencedetect filter and rewrites the `seconds` values in
  * src/timing.ts so every animation lands on the words it belongs to.
  */
@@ -14,7 +14,7 @@ import {execFileSync, spawnSync} from 'node:child_process';
 import {readFileSync, writeFileSync} from 'node:fs';
 
 const audio = process.argv[2] ?? 'public/voiceover.mp3';
-const EXPECTED_SCENES = 12;
+const EXPECTED_SCENES = 11;
 
 // Silence threshold / minimum duration. The inter-scene breaks are 1.5s, and
 // natural sentence pauses are well under 0.6s, so 0.75s separates them cleanly.
