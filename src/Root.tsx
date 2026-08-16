@@ -1,6 +1,12 @@
 import React from 'react';
-import {Composition} from 'remotion';
+import {Composition, Still} from 'remotion';
 import {Film} from './Film';
+import {
+  THUMB_SIZE,
+  ThumbNumber,
+  ThumbPilotsAssets,
+  ThumbScale,
+} from './Thumbnails';
 import {TOTAL_FRAMES} from './timing';
 import {FPS, HEIGHT, WIDTH} from './theme';
 
@@ -24,5 +30,9 @@ export const RemotionRoot: React.FC = () => (
       height={HEIGHT}
       defaultProps={{withAudio: true}}
     />
+
+    <Still id="ThumbA" component={ThumbPilotsAssets} {...THUMB_SIZE} />
+    <Still id="ThumbB" component={ThumbNumber} {...THUMB_SIZE} />
+    <Still id="ThumbC" component={ThumbScale} {...THUMB_SIZE} />
   </>
 );
