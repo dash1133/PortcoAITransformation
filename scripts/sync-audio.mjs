@@ -71,7 +71,12 @@ if (inner.length !== EXPECTED_SCENES - 1) {
 // so each scene keeps a little breathing room on both sides of its speech.
 const mid = (g) => (g.start + g.end) / 2;
 const cuts = [0, ...inner.map(mid), total];
-const durations = cuts.slice(1).map((c, i) => Number((c - cuts[i]).toFixed(2)));
+const FINAL_MIN = 6.0; // the sign-off animation outruns its line
+const durations = cuts.slice(1).map((c, i) => {
+  const d = c - cuts[i];
+  const last = i === cuts.length - 2;
+  return Number((last ? Math.max(d, FINAL_MIN) : d).toFixed(2));
+});
 
 const path = 'src/timing.ts';
 let src = readFileSync(path, 'utf8');
