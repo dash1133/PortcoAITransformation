@@ -9,6 +9,7 @@ import {
   ThumbTitleDark,
   ThumbTitleLight,
   ThumbTitlePhoto,
+  ThumbTitlePhotoLight,
 } from './Thumbnails';
 import {TOTAL_FRAMES} from './timing';
 import {FPS, HEIGHT, WIDTH} from './theme';
@@ -40,11 +41,9 @@ export const RemotionRoot: React.FC = () => (
     <Still id="ThumbTitleDark" component={ThumbTitleDark} {...THUMB_SIZE} />
     <Still id="ThumbTitleLight" component={ThumbTitleLight} {...THUMB_SIZE} />
     <Still id="ThumbTitlePhoto" component={ThumbTitlePhoto} {...THUMB_SIZE} />
-    {/* Layout proof only — swap for the real cutout by dropping public/dash.png. */}
     <Still
-      id="ThumbTitlePhotoProof"
-      component={ThumbTitlePhoto}
-      defaultProps={{src: 'dash-placeholder.png'}}
+      id="ThumbTitlePhotoLight"
+      component={ThumbTitlePhotoLight}
       {...THUMB_SIZE}
     />
   </>

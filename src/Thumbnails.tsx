@@ -356,46 +356,92 @@ export const ThumbTitleLight: React.FC = () => (
 );
 
 // --- E · the title, with the founder ----------------------------------------
-// Renders once public/dash.png exists (cut out, transparent background). A
-// face is the single biggest lever on click-through for founder-led B2B, so
-// the type gives up a third of the frame to make room for it.
+// A face is the single biggest lever on click-through for founder-led B2B, so
+// the type gives up the right third of the frame to make room for one. The
+// headshot is cropped to its own alpha bounds upstream, which means its box is
+// the subject's box and the layout below can position it exactly.
 
-export const ThumbTitlePhoto: React.FC<{src?: string}> = ({
-  src = 'dash.png',
-}) => (
-  <Frame>
-    {/* Warm pool behind the shoulders so the cutout doesn't float. */}
+const PHOTO_H = 665;
+
+const Founder: React.FC<{glow: string}> = ({glow}) => (
+  <>
+    {/* Pool of brand colour behind the shoulders so the cutout is seated on
+        the ground rather than pasted onto it. */}
     <AbsoluteFill
       style={{
         background:
-          'radial-gradient(460px 520px at 76% 62%, rgba(235,99,54,0.30) 0%, ' +
-          'rgba(225,52,97,0.12) 52%, rgba(20,17,16,0) 76%)',
+          `radial-gradient(430px 500px at 79% 64%, ${glow} 0%, rgba(20,17,16,0) 74%)`,
       }}
     />
-    <div
-      style={{
-        position: 'absolute',
-        right: -30,
-        bottom: 0,
-        height: 700,
-        display: 'flex',
-        alignItems: 'flex-end',
-      }}
-    >
+    <div style={{position: 'absolute', right: 8, bottom: 0}}>
       <Img
-        src={staticFile(src)}
-        style={{height: 700, width: 'auto', display: 'block'}}
+        src={staticFile('dash.png')}
+        style={{height: PHOTO_H, width: 'auto', display: 'block'}}
       />
     </div>
+  </>
+);
 
+export const ThumbTitlePhoto: React.FC = () => (
+  <Frame>
+    <Founder glow="rgba(235,99,54,0.30)" />
     <AbsoluteFill style={{padding: 58, justifyContent: 'center'}}>
-      <TitleBlock tone="dark" width={720} />
+      <TitleBlock tone="dark" width={700} />
     </AbsoluteFill>
-
     <div style={{position: 'absolute', left: 58, bottom: 40}}>
       <Mark width={170} />
     </div>
   </Frame>
+);
+
+/** Light ground — the higher-contrast card against YouTube's dark interface. */
+export const ThumbTitlePhotoLight: React.FC = () => (
+  <AbsoluteFill
+    style={{backgroundColor: COLORS.offWhite, fontFamily: FONT.family}}
+  >
+    <BrandFont />
+    <AbsoluteFill
+      style={{
+        background:
+          'radial-gradient(900px 700px at 22% 10%, rgba(255,164,21,0.14) 0%, ' +
+          'rgba(250,248,246,0) 70%)',
+      }}
+    />
+    <AbsoluteFill
+      style={{
+        background:
+          'radial-gradient(430px 500px at 79% 64%, rgba(235,99,54,0.22) 0%, ' +
+          'rgba(250,248,246,0) 74%)',
+      }}
+    />
+    <div style={{position: 'absolute', right: 8, bottom: 0}}>
+      <Img
+        src={staticFile('dash.png')}
+        style={{height: PHOTO_H, width: 'auto', display: 'block'}}
+      />
+    </div>
+
+    <AbsoluteFill style={{padding: 58, justifyContent: 'center'}}>
+      <TitleBlock tone="light" width={700} />
+    </AbsoluteFill>
+
+    <div style={{position: 'absolute', left: 58, bottom: 38}}>
+      <Img
+        src={staticFile('logo.png')}
+        style={{width: 190, height: 'auto', display: 'block'}}
+      />
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 10,
+        background: BRAND_GRADIENT,
+      }}
+    />
+  </AbsoluteFill>
 );
 
 export const THUMB_SIZE = {width: W, height: H};
