@@ -24,17 +24,17 @@ export type SceneId =
   | 'signoff';
 
 export const SCENES: {id: SceneId; seconds: number; words: number}[] = [
-  {id: 'proof', seconds: 12.0, words: 27},
-  {id: 'brand', seconds: 11.0, words: 24},
-  {id: 'reality', seconds: 21.0, words: 46},
-  {id: 'needs', seconds: 15.0, words: 34},
-  {id: 'deliver', seconds: 41.5, words: 100},
-  {id: 'pod', seconds: 17.0, words: 38},
-  {id: 'caseStudy', seconds: 17.0, words: 38},
-  {id: 'architecture', seconds: 45.0, words: 122},
-  {id: 'operatingModels', seconds: 20.0, words: 45},
-  {id: 'recap', seconds: 17.0, words: 40},
-  {id: 'signoff', seconds: 7.0, words: 8},
+  {id: 'proof', seconds: 10.5, words: 24},
+  {id: 'brand', seconds: 9.0, words: 19},
+  {id: 'reality', seconds: 17.5, words: 40},
+  {id: 'needs', seconds: 14.0, words: 31},
+  {id: 'deliver', seconds: 26.5, words: 63},
+  {id: 'pod', seconds: 16.0, words: 36},
+  {id: 'caseStudy', seconds: 16.5, words: 38},
+  {id: 'architecture', seconds: 38.0, words: 91},
+  {id: 'operatingModels', seconds: 16.5, words: 38},
+  {id: 'recap', seconds: 18.0, words: 41},
+  {id: 'signoff', seconds: 6.0, words: 7},
 ];
 
 export const frames = (seconds: number) => Math.round(seconds * FPS);

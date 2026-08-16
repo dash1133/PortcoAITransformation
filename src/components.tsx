@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useContext} from 'react';
 import {
   AbsoluteFill,
   Img,
@@ -9,6 +9,21 @@ import {
   useVideoConfig,
 } from 'remotion';
 import {BRAND_GRADIENT, COLORS, FONT} from './theme';
+
+// ---------------------------------------------------------------------------
+// Scene clock
+//
+// Animation cues are expressed as a FRACTION of the scene rather than an
+// absolute frame, so when the film is re-timed to a real voiceover every cue
+// moves with it instead of leaving dead air (or firing past the cut).
+// ---------------------------------------------------------------------------
+
+export const SceneDuration = React.createContext(300);
+
+export const useBeat = () => {
+  const dur = useContext(SceneDuration);
+  return useCallback((fraction: number) => Math.round(fraction * dur), [dur]);
+};
 
 // ---------------------------------------------------------------------------
 // Motion primitives

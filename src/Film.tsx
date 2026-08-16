@@ -2,6 +2,7 @@ import React from 'react';
 import {AbsoluteFill, Audio, Sequence, staticFile} from 'remotion';
 import {BrandFont} from './fonts';
 import {SCENE_FRAMES, SceneId} from './timing';
+import {SceneDuration} from './components';
 import {COLORS} from './theme';
 import {SceneBrand, SceneProof} from './scenes/Act1';
 import {SceneDeliver, SceneNeeds, SceneReality} from './scenes/Act2';
@@ -45,7 +46,9 @@ export const Film: React.FC<{withAudio?: boolean}> = ({withAudio = false}) => {
             durationInFrames={scene.durationInFrames}
             name={scene.id}
           >
-            <Comp />
+            <SceneDuration.Provider value={scene.durationInFrames}>
+              <Comp />
+            </SceneDuration.Provider>
           </Sequence>
         );
       })}

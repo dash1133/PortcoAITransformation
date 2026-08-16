@@ -1,6 +1,6 @@
 import React from 'react';
 import {interpolate, useCurrentFrame} from 'remotion';
-import {Eyebrow, Headline, Rise, Stage} from '../components';
+import {Eyebrow, Headline, Rise, Stage, useBeat} from '../components';
 import {BRAND_GRADIENT, COLORS} from '../theme';
 
 // ---------------------------------------------------------------------------
@@ -121,12 +121,14 @@ const ROLES = [
   {label: 'DevOps', sub: 'infra & CI/CD'},
 ];
 
-export const ScenePod: React.FC = () => (
+export const ScenePod: React.FC = () => {
+  const beat = useBeat();
+  return (
   <Stage tone="light" padding={0}>
     <div style={{position: 'absolute', left: 130, top: 62}}>
-      <Eyebrow delay={4}>How we deliver</Eyebrow>
+      <Eyebrow delay={beat(0.01)}>How we deliver</Eyebrow>
       <div style={{height: 26}} />
-      <Rise delay={26} distance={16}>
+      <Rise delay={beat(0.06)} distance={16}>
         <div
           style={{
             fontSize: 54,
@@ -141,15 +143,15 @@ export const ScenePod: React.FC = () => (
     </div>
 
     {/* reporting lines are drawn first so the cards paint over them */}
-    <OrgLine delay={168} d="M 960 326 L 960 388" />
+    <OrgLine delay={beat(0.35)} d="M 960 326 L 960 388" />
     <OrgLine
-      delay={232}
+      delay={beat(0.475)}
       d="M 960 462 L 960 502 M 372 502 L 1548 502 M 372 502 L 372 536 M 666 502 L 666 536 M 960 502 L 960 536 M 1254 502 L 1254 536 M 1548 502 L 1548 536"
     />
 
     {/* client org at the top of the reporting line */}
     <div style={{position: 'absolute', left: 660, top: 262, width: 600}}>
-      <Rise delay={110} distance={16} dur={22}>
+      <Rise delay={beat(0.219)} distance={16} dur={22}>
         <div
           style={{
             border: '2px dashed #C4B9AE',
@@ -176,7 +178,7 @@ export const ScenePod: React.FC = () => (
 
     {/* engineering manager */}
     <div style={{position: 'absolute', left: 700, top: 388, width: 520}}>
-      <Rise delay={175} distance={16} dur={22}>
+      <Rise delay={beat(0.371)} distance={16} dur={22}>
         <div
           style={{
             background: BRAND_GRADIENT,
@@ -204,13 +206,13 @@ export const ScenePod: React.FC = () => (
       }}
     >
       {ROLES.map((r, i) => (
-        <RoleChip key={r.label} delay={246 + i * 26} {...r} />
+        <RoleChip key={r.label} delay={beat(0.49 + i * 0.028)} {...r} />
       ))}
     </div>
 
     {/* the last point */}
     <div style={{position: 'absolute', left: 130, right: 130, top: 760}}>
-      <Rise delay={420} distance={18}>
+      <Rise delay={beat(0.663)} distance={18}>
         <div
           style={{
             borderTop: `3px solid ${COLORS.orange}`,
@@ -230,7 +232,8 @@ export const ScenePod: React.FC = () => (
       </Rise>
     </div>
   </Stage>
-);
+  );
+};
 
 // ---------------------------------------------------------------------------
 // SCENE 7 · CASE STUDY
@@ -294,12 +297,14 @@ const Outcome: React.FC<{delay: number; value: string; label: string}> = ({
   </Rise>
 );
 
-export const SceneCaseStudy: React.FC = () => (
+export const SceneCaseStudy: React.FC = () => {
+  const beat = useBeat();
+  return (
   <Stage tone="light" padding={0}>
     <div style={{position: 'absolute', left: 130, top: 62}}>
-      <Eyebrow delay={4}>Case study</Eyebrow>
+      <Eyebrow delay={beat(0.01)}>Case study</Eyebrow>
       <div style={{height: 24}} />
-      <Rise delay={26} distance={16}>
+      <Rise delay={beat(0.05)} distance={16}>
         <div
           style={{
             fontSize: 52,
@@ -313,21 +318,21 @@ export const SceneCaseStudy: React.FC = () => (
       </Rise>
     </div>
 
-    <SourceBox delay={120} left={190} label="QuickBase" />
-    <SourceBox delay={146} left={790} label="Event Documents" />
-    <SourceBox delay={172} left={1390} label="Policy Library" />
+    <SourceBox delay={beat(0.158)} left={190} label="QuickBase" />
+    <SourceBox delay={beat(0.23)} left={790} label="Event Documents" />
+    <SourceBox delay={beat(0.303)} left={1390} label="Policy Library" />
 
     {/* sources funnel into the agent */}
     <Connector
-      delay={214}
+      delay={beat(0.4)}
       id="cs-bus"
       heads="none"
       d="M 360 382 L 360 434 M 960 382 L 960 434 M 1560 382 L 1560 434 M 360 434 L 1560 434"
     />
-    <Connector delay={222} id="cs-in" heads="end" d="M 960 434 L 960 461" />
+    <Connector delay={beat(0.418)} id="cs-in" heads="end" d="M 960 434 L 960 461" />
 
     <div style={{position: 'absolute', left: 660, top: 476, width: 600}}>
-      <Rise delay={222} distance={20} dur={24}>
+      <Rise delay={beat(0.418)} distance={20} dur={24}>
         <div
           style={{
             border: `3px solid ${COLORS.orange}`,
@@ -345,10 +350,10 @@ export const SceneCaseStudy: React.FC = () => (
       </Rise>
     </div>
 
-    <Connector delay={282} id="cs-out" d="M 960 596 L 960 633" />
+    <Connector delay={beat(0.57)} id="cs-out" d="M 960 596 L 960 633" />
 
     <div style={{position: 'absolute', left: 610, top: 648, width: 700}}>
-      <Rise delay={288} distance={16} dur={20}>
+      <Rise delay={beat(0.582)} distance={16} dur={20}>
         <div
           style={{
             backgroundColor: COLORS.cream,
@@ -375,12 +380,13 @@ export const SceneCaseStudy: React.FC = () => (
         gap: 40,
       }}
     >
-      <Outcome delay={350} value="3 → 1" label="systems unified into one interface" />
-      <Outcome delay={386} value="Hours → seconds" label="time to answer" />
-      <Outcome delay={422} value="2×" label="new client wins" />
+      <Outcome delay={beat(0.703)} value="3 → 1" label="systems unified into one interface" />
+      <Outcome delay={beat(0.776)} value="Hours → seconds" label="time to answer" />
+      <Outcome delay={beat(0.848)} value="2×" label="new client wins" />
     </div>
   </Stage>
-);
+  );
+};
 
 // ---------------------------------------------------------------------------
 // SCENE 8 · THE ARCHITECTURE OF A STRATEGIC AI ASSET
@@ -474,13 +480,14 @@ const CHIPS = [
 
 export const SceneArchitecture: React.FC = () => {
   const frame = useCurrentFrame();
+  const beat = useBeat();
 
   const perimeter = 2 * (ARCH.bw + ARCH.bh);
-  const draw = interpolate(frame, [600, 700], [perimeter, 0], {
+  const draw = interpolate(frame, [beat(0.356), beat(0.421)], [perimeter, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const label = interpolate(frame, [692, 722], [0, 1], {
+  const label = interpolate(frame, [beat(0.41), beat(0.436)], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -488,7 +495,7 @@ export const SceneArchitecture: React.FC = () => {
   return (
     <Stage tone="light" padding={0}>
       <div style={{position: 'absolute', left: 150, top: 66}}>
-        <Rise delay={2} distance={14}>
+        <Rise delay={beat(0.005)} distance={14}>
           <div
             style={{
               fontSize: 50,
@@ -547,7 +554,7 @@ export const SceneArchitecture: React.FC = () => {
           width: ARCH.iw,
         }}
       >
-        <Rise delay={120} distance={20} dur={24}>
+        <Rise delay={beat(0.114)} distance={20} dur={24}>
           <div
             style={{
               border: `2px solid ${COLORS.orange}`,
@@ -575,7 +582,7 @@ export const SceneArchitecture: React.FC = () => {
           width: ARCH.iw,
         }}
       >
-        <Rise delay={270} distance={20} dur={26}>
+        <Rise delay={beat(0.198)} distance={20} dur={26}>
           <div
             style={{
               border: `3px solid ${COLORS.orange}`,
@@ -599,7 +606,7 @@ export const SceneArchitecture: React.FC = () => {
               }}
             >
               {CHIPS.map((c, i) => (
-                <Rise key={c} delay={330 + i * 26} distance={10} dur={18}>
+                <Rise key={c} delay={beat(0.237 + i * 0.018)} distance={10} dur={18}>
                   <CoreChip>{c}</CoreChip>
                 </Rise>
               ))}
@@ -609,7 +616,7 @@ export const SceneArchitecture: React.FC = () => {
       </div>
 
       <OutsideBox
-        delay={760}
+        delay={beat(0.46)}
         left={1400}
         top={512}
         width={400}
@@ -618,7 +625,7 @@ export const SceneArchitecture: React.FC = () => {
       />
 
       <OutsideBox
-        delay={820}
+        delay={beat(0.54)}
         left={250}
         top={856}
         width={880}
@@ -626,9 +633,9 @@ export const SceneArchitecture: React.FC = () => {
         sub="ERP · CRM · HCM · document stores — governed, RBAC-scoped, audited"
       />
 
-      <Connector delay={1000} id="wf" d="M 690 453 L 690 485" />
-      <Connector delay={1000} id="ppai" d="M 1195 605 L 1385 605" />
-      <Connector delay={1040} id="sys" d="M 690 841 L 690 742" />
+      <Connector delay={beat(0.655)} id="wf" d="M 690 453 L 690 485" />
+      <Connector delay={beat(0.655)} id="ppai" d="M 1195 605 L 1385 605" />
+      <Connector delay={beat(0.675)} id="sys" d="M 690 841 L 690 742" />
     </Stage>
   );
 };

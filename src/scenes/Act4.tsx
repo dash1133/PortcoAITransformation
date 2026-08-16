@@ -1,6 +1,6 @@
 import React from 'react';
 import {interpolate, useCurrentFrame} from 'remotion';
-import {Eyebrow, Logo, Rise, Stage} from '../components';
+import {Eyebrow, Logo, Rise, Stage, useBeat} from '../components';
 import {BRAND_GRADIENT, COLORS} from '../theme';
 
 // ---------------------------------------------------------------------------
@@ -65,11 +65,13 @@ const ModelCard: React.FC<{
   </Rise>
 );
 
-export const SceneOperatingModels: React.FC = () => (
+export const SceneOperatingModels: React.FC = () => {
+  const beat = useBeat();
+  return (
   <Stage tone="light" padding={130}>
-    <Eyebrow delay={4}>How we engage</Eyebrow>
+    <Eyebrow delay={beat(0.01)}>How we engage</Eyebrow>
     <div style={{height: 30}} />
-    <Rise delay={26} distance={16}>
+    <Rise delay={beat(0.05)} distance={16}>
       <div
         style={{
           fontSize: 58,
@@ -86,19 +88,19 @@ export const SceneOperatingModels: React.FC = () => (
 
     <div style={{display: 'flex', gap: 30, alignItems: 'stretch'}}>
       <ModelCard
-        delay={120}
+        delay={beat(0.166)}
         n="01"
         title="AI Pod"
         body="a dedicated cross-functional team, embedded in yours"
       />
       <ModelCard
-        delay={220}
+        delay={beat(0.263)}
         n="02"
         title="Staff augmentation"
         body="targeted specialists into the team you already have"
       />
       <ModelCard
-        delay={320}
+        delay={beat(0.336)}
         n="03"
         title="Build-operate-transfer"
         body="we build it, run it, then hand it over to you"
@@ -107,7 +109,7 @@ export const SceneOperatingModels: React.FC = () => (
 
     <div style={{height: 56}} />
 
-    <Rise delay={450} distance={20}>
+    <Rise delay={beat(0.578)} distance={20}>
       <div style={{borderLeft: `6px solid ${COLORS.orange}`, paddingLeft: 30}}>
         <div style={{fontSize: 42, fontWeight: 600, color: COLORS.ink}}>
           Commitment earned in four-week increments
@@ -118,7 +120,8 @@ export const SceneOperatingModels: React.FC = () => (
       </div>
     </Rise>
   </Stage>
-);
+  );
+};
 
 // ---------------------------------------------------------------------------
 // SCENE 10 · RECAP
@@ -146,12 +149,14 @@ const RecapLine: React.FC<{delay: number; children: React.ReactNode}> = ({
   </Rise>
 );
 
-export const SceneRecap: React.FC = () => (
+export const SceneRecap: React.FC = () => {
+  const beat = useBeat();
+  return (
   <Stage tone="light" padding={130}>
-    <Eyebrow delay={4}>Recap</Eyebrow>
+    <Eyebrow delay={beat(0.01)}>Recap</Eyebrow>
     <div style={{height: 30}} />
 
-    <Rise delay={24} distance={18}>
+    <Rise delay={beat(0.03)} distance={18}>
       <div
         style={{
           fontSize: 36,
@@ -178,17 +183,17 @@ export const SceneRecap: React.FC = () => (
     <div style={{height: 52}} />
 
     <div style={{display: 'flex', flexDirection: 'column', gap: 26}}>
-      <RecapLine delay={120}>Focus your AI program</RecapLine>
-      <RecapLine delay={180}>Build on the right architecture</RecapLine>
-      <RecapLine delay={240}>Don&rsquo;t lock to a single LLM model</RecapLine>
-      <RecapLine delay={300}>
+      <RecapLine delay={beat(0.264)}>Focus your AI program</RecapLine>
+      <RecapLine delay={beat(0.33)}>Build on the right architecture</RecapLine>
+      <RecapLine delay={beat(0.441)}>Don&rsquo;t lock to a single LLM model</RecapLine>
+      <RecapLine delay={beat(0.574)}>
         Partner with a reliable vendor with AI credibility
       </RecapLine>
     </div>
 
     <div style={{height: 50}} />
 
-    <Rise delay={390} distance={20}>
+    <Rise delay={beat(0.752)} distance={20}>
       <div
         style={{
           display: 'inline-flex',
@@ -216,7 +221,8 @@ export const SceneRecap: React.FC = () => (
       </div>
     </Rise>
   </Stage>
-);
+  );
+};
 
 // ---------------------------------------------------------------------------
 // SCENE 11 · SIGN-OFF
@@ -224,7 +230,8 @@ export const SceneRecap: React.FC = () => (
 
 export const SceneSignoff: React.FC = () => {
   const frame = useCurrentFrame();
-  const rule = interpolate(frame, [40, 90], [0, 100], {
+  const beat = useBeat();
+  const rule = interpolate(frame, [beat(0.2), beat(0.5)], [0, 100], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -241,7 +248,7 @@ export const SceneSignoff: React.FC = () => {
           gap: 44,
         }}
       >
-        <Rise delay={2} distance={20} dur={30}>
+        <Rise delay={beat(0.01)} distance={20} dur={30}>
           <Logo width={880} />
         </Rise>
 
@@ -251,7 +258,7 @@ export const SceneSignoff: React.FC = () => {
           />
         </div>
 
-        <Rise delay={70} distance={16}>
+        <Rise delay={beat(0.35)} distance={16}>
           <div
             style={{
               fontSize: 44,
@@ -264,7 +271,7 @@ export const SceneSignoff: React.FC = () => {
           </div>
         </Rise>
 
-        <Rise delay={120} distance={14}>
+        <Rise delay={beat(0.6)} distance={14}>
           <div
             style={{
               fontSize: 36,

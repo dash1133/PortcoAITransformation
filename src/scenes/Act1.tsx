@@ -7,14 +7,14 @@ import {
   Logo,
   Rise,
   Stage,
+  useBeat,
 } from '../components';
 import {BRAND_GRADIENT, COLORS} from '../theme';
 
 // ---------------------------------------------------------------------------
 // SCENE 1 · THE PROOF  (cold open, dark)
-// VO: "One of the world's leading management consulting firms runs its AI on a
-//      platform we built. Ten thousand users. Six continents. In production,
-//      every day."
+// VO: "One of the world's leading consulting firms runs its AI on a platform we
+//      built. Ten thousand users. Six continents. In production every day."
 // ---------------------------------------------------------------------------
 
 const StatLine: React.FC<{
@@ -53,14 +53,15 @@ const StatLine: React.FC<{
 
 export const SceneProof: React.FC = () => {
   const frame = useCurrentFrame();
-  const sweep = interpolate(frame, [110, 210], [0, 100], {
+  const beat = useBeat();
+  const sweep = interpolate(frame, [beat(0.42), beat(0.72)], [0, 100], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
   return (
     <Stage tone="dark">
-      <Eyebrow tone="dark" delay={4}>
+      <Eyebrow tone="dark" delay={beat(0.02)}>
         Proven at enterprise scale
       </Eyebrow>
 
@@ -68,17 +69,17 @@ export const SceneProof: React.FC = () => {
 
       <div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
         <StatLine
-          delay={100}
-          value={<Counter to={10000} delay={100} dur={46} suffix="+" />}
+          delay={beat(0.42)}
+          value={<Counter to={10000} delay={beat(0.42)} dur={40} suffix="+" />}
           label="platform users"
         />
-        <StatLine delay={148} value="Six" label="continents" />
-        <StatLine delay={196} value="One" label="AI platform" />
+        <StatLine delay={beat(0.54)} value="Six" label="continents" />
+        <StatLine delay={beat(0.65)} value="One" label="AI platform" />
       </div>
 
       <div style={{height: 70}} />
 
-      <div style={{width: 620, height: 3, background: '#2E2724'}}>
+      <div style={{width: 620, height: 3, backgroundColor: '#2E2724'}}>
         <div
           style={{width: `${sweep}%`, height: '100%', background: BRAND_GRADIENT}}
         />
@@ -86,9 +87,9 @@ export const SceneProof: React.FC = () => {
 
       <div style={{height: 34}} />
 
-      <Rise delay={252} distance={18}>
+      <Rise delay={beat(0.78)} distance={18}>
         <div style={{fontSize: 40, fontWeight: 300, color: COLORS.white}}>
-          Built by Infinite Possibilities.
+          Built by Infinite Possibilities
         </div>
       </Rise>
     </Stage>
@@ -97,13 +98,14 @@ export const SceneProof: React.FC = () => {
 
 // ---------------------------------------------------------------------------
 // SCENE 2 · WHO WE ARE  (logo reveal, light)
-// VO: "We are Infinite Possibilities. We build custom AI solutions for
-//      portfolio companies — moving them from AI ambition to AI in production."
+// VO: "We're Infinite Possibilities. We build custom AI platforms for portfolio
+//      companies — from AI ambition to AI in production."
 // ---------------------------------------------------------------------------
 
 export const SceneBrand: React.FC = () => {
   const frame = useCurrentFrame();
-  const logoScale = interpolate(frame, [0, 40], [0.94, 1], {
+  const beat = useBeat();
+  const logoScale = interpolate(frame, [0, beat(0.15)], [0.94, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -111,16 +113,15 @@ export const SceneBrand: React.FC = () => {
   return (
     <Stage tone="light">
       <div style={{display: 'flex', flexDirection: 'column', gap: 56}}>
-        <Rise delay={2} distance={20} dur={34}>
+        <Rise delay={beat(0.02)} distance={20} dur={34}>
           <Logo width={780} style={{transform: `scale(${logoScale})`}} />
         </Rise>
 
-        <Headline delay={62} size={82}>
+        <Headline delay={beat(0.22)} size={82}>
           Custom AI platforms for
           <br />
           portfolio companies
         </Headline>
-
       </div>
     </Stage>
   );

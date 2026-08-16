@@ -4,8 +4,8 @@
 Goal: **one continuous MP3** of the full narration, with clean, detectable
 gaps between scenes so the video can be auto-synced to the audio.
 
-**Eleven scenes → ten breaks.** (The old recommendation scene was folded into
-the thesis, so this is one scene shorter than the previous version.)
+**Eleven scenes → ten breaks.** Script tightened from 534 to **428 words**;
+the film runs **3:08** rather than 3:43.
 
 ---
 
@@ -18,6 +18,7 @@ the thesis, so this is one scene shorter than the previous version.)
 | **Stability** | **50%** | Consistent across a long read without going flat. |
 | **Similarity** | **75%** | Keeps the voice identity locked throughout. |
 | **Style exaggeration** | **0–15%** | Low. This is a considered brand film, not a commercial. |
+| **Speed** | **1.0 (default)** | The timing table below assumes ~150 wpm. Don't speed it up — the script is already tight. |
 | **Speaker boost** | On | |
 | **Output format** | **MP3 192 kbps / 44.1 kHz** or higher | |
 
@@ -26,57 +27,56 @@ the thesis, so this is one scene shorter than the previous version.)
 > Read as a confident, measured enterprise brand narrator addressing private
 > equity operating partners and portfolio company CEOs. Authoritative and calm,
 > never salesy or hyped. Land declarative sentences with finality and a short
-> beat after each. Slightly slower than conversational pace. Treat short
-> fragments ("A purpose-built AI platform." / "Unable to scale.") as
-> deliberate, weighted statements, not list items.
+> beat after each. Treat short fragments ("A purpose-built AI platform." /
+> "Unable to scale.") as deliberate, weighted statements, not list items.
 
 ---
 
 ## 2 · The script — paste this whole block, generate ONCE
 
 The `<break time="..." />` tags create the scene gaps. **Do not remove them** —
-they are how the video gets synced to your audio automatically. Keep it as a
-single generation so the voice stays consistent throughout.
+they are how the video gets synced to your audio. Keep it as a single
+generation so the voice stays consistent throughout.
 
 ---
 
-One of the world's leading management consulting firms runs its AI on a platform we built. Ten thousand users. Six continents. In production, every day.
+One of the world's leading consulting firms runs its AI on a platform we built. Ten thousand users. Six continents. In production every day.
 
 <break time="1.5s" />
 
-We are Infinite Possibilities. We build custom AI solutions for portfolio companies — moving them from AI ambition to AI in production.
+We're Infinite Possibilities. We build custom AI platforms for portfolio companies — from AI ambition to AI in production.
 
 <break time="1.5s" />
 
-Inside most mid-market portfolio companies, you find the same four things. Citizen developers build — unable to scale. Vendors sell — unable to fit the ecosystem. Leaders want to invest — unable to determine what, and when. And tokens burn — unable to verify the return.
+Inside most mid-market portfolio companies you find the same four things. Citizen developers build — unable to scale. Vendors sell — unable to fit. Leaders invest — unable to determine what and when. Tokens burn — unable to verify return.
 
 <break time="1.5s" />
 
-So what does a portfolio company actually need? Not another one-off solution. Not another vendor's platform. A purpose-built AI platform. A strategic asset they own — one that drives profitable growth, and improves exit value.
+What does a portfolio company need? Not another one-off solution. Not another vendor's platform. A purpose-built AI platform — a strategic asset they own, driving profitable growth and higher exit value.
 
 <break time="1.5s" />
 
-We build these strategic assets for portfolio companies — by delivering a platform that focuses on the prioritized workflows that drive profitable growth. A single platform holding the tools, the knowledge, and the templates specific to your company, with one consistent connection into your core systems. Model-agnostic and vendor-agnostic, so you stay on top of every AI wave instead of locked to one. Built to manage cost, so token spend never outruns the work it replaces. And secure by design — so every new solution inherits that security instead of rebuilding it.
+We build these assets as a platform focused on the prioritized workflows that drive profitable growth. One platform holding the tools, knowledge and templates specific to your company, with one connection into your core systems. Model-agnostic, so you're never locked to one vendor. Cost-managed, so token spend never outruns the work it replaces. And secure by design — every new build inherits it.
 
 <break time="1.5s" />
 
-We deliver it through a dedicated AI Pod — product, AI and backend engineering, UX, QA and DevOps — led by an engineering manager, reporting into your own AI transformation team. With our founder and CEO carrying ultimate accountability for every outcome.
+We deliver through a dedicated AI Pod that reports into your AI transformation team, led by an engineering manager — product, engineering, UX, QA and DevOps. Our founder and CEO is ultimately accountable for every outcome.
 
 <break time="1.5s" />
 
-Take one mid-market portfolio company. Three disconnected systems — their operational database, their event documents, and their policy library — now answered by a single Planner agent. Staff simply ask in plain language. Questions that took hours take seconds. And they doubled their new client wins.
+One mid-market portfolio company. Three disconnected systems — operational data, event documents, a policy library — now answered by a single Planner agent. Staff ask in plain language. Questions that took hours take seconds. New client wins doubled.
 
 <break time="1.5s" />
 
-So here's what we actually build — and where the line sits. Inside the line: the custom workflows that run your business, and beneath them the Enterprise AI Core — the connectors into your systems, the skills, the knowledge bases, the templates and components your company runs on. That is the asset. That is what you own. Outside the line sit two things you already have: your enterprise systems and data, and the personal productivity AI platforms your people use every day. Both connect to the Core, both ways, through the same governed standards. Your data stays protected. Your people's AI becomes enterprise-aware. And every new workflow starts from what's already there.
+Here's what we build, and where the line sits. Inside: the custom workflows that run your business, and beneath them the Enterprise AI Core — connectors, skills, knowledge bases, templates and components. That's the asset. That's what you own. Outside sit two things you already have: your enterprise systems and data, and the personal productivity AI your people use daily. Both connect to the Core, both ways, through the same governed standards. So your data stays protected, your people's AI becomes enterprise-aware, and every new workflow starts from what's already there.
 
 <break time="1.5s" />
 
-And we'll structure it your way. A dedicated AI Pod. Targeted staff augmentation. Or build, operate and transfer — we build it, run it, then hand it over to you. Whichever model you choose, commitment is earned in four-week increments, never assumed. At every gate, you decide whether we continue.
+We'll structure it your way. A dedicated AI Pod. Targeted staff augmentation. Or build-operate-transfer — we run it, then hand it over. Whichever you choose, commitment is earned in four-week increments, never assumed. At every gate, you decide.
 
 <break time="1.5s" />
 
-So don't scatter efforts and funds. Focus your AI program. Build on the right architecture. Don't lock to a single LLM model. And partner with a reliable vendor with real AI credibility. The impact: profitable growth, and higher exit value.
+Don't scatter efforts and funds — build a strategic AI asset. Focus your program. Build on the right architecture. Don't lock to a single model. Partner with a vendor with real AI credibility. The impact: profitable growth and higher exit value.
 
 <break time="1.5s" />
 
@@ -84,18 +84,49 @@ Infinite Possibilities. Let's build your AI advantage.
 
 ---
 
-## 3 · After you generate
+## 3 · Timing
+
+Every scene's length is set from its own narration, so picture and read finish
+together. At ~150 wpm:
+
+| # | Scene | Words | Speech | Scene |
+|---|---|---:|---:|---:|
+| 1 | The proof | 24 | 9.6s | 10.5s |
+| 2 | Who we are | 19 | 7.6s | 9.0s |
+| 3 | Reality inside a PortCo | 40 | 16.0s | 17.5s |
+| 4 | What a portfolio company needs | 31 | 12.4s | 14.0s |
+| 5 | What we deliver | 63 | 25.2s | 26.5s |
+| 6 | The AI Pod | 36 | 14.4s | 16.0s |
+| 7 | Case study | 38 | 15.2s | 16.5s |
+| 8 | The architecture | 91 | 36.4s | 38.0s |
+| 9 | Flexible operating models | 38 | 15.2s | 16.5s |
+| 10 | Recap | 41 | 16.4s | 18.0s |
+| 11 | Sign-off | 7 | 2.8s | 6.0s |
+| | **Total** | **428** | **2:51** | **3:08** |
+
+Each scene carries ~1.5s beyond its speech — the inter-scene break, split half
+before and half after, so nothing feels clipped at the cuts. Sign-off is held
+to 6s so the logo, rule and URL have room to land.
+
+**Every animation cue is stored as a fraction of its scene, not a fixed frame.**
+So if your narrator reads faster or slower than 150 wpm, the scene stretches or
+compresses and every cue moves with it — no dead air, and nothing firing after
+the cut. That is what makes the sync step below sufficient on its own.
+
+---
+
+## 4 · After you generate
 
 1. Download as **MP3**.
 2. Give it any filename you like and re-upload it here.
 3. I'll run silence detection on the `<break>` gaps to find each scene boundary,
-   then re-time every animation to your actual read. No manual syncing needed.
+   re-time all eleven scenes to your actual read, and render the final with sound.
 
-**If the break tags get ignored** by the voice/model you pick (some voices
-handle them inconsistently): just leave a blank line between scenes instead and
-tell me — I'll fall back to detecting the natural sentence pauses, which is
-slightly less precise but still works.
+**If the break tags get ignored** by the voice you pick (some handle them
+inconsistently): leave a blank line between scenes instead and tell me — I'll
+fall back to detecting natural sentence pauses, slightly less precise but
+workable.
 
 **If you dislike the read**, regenerate the whole block rather than patching one
-scene — a single continuous take keeps tone and pacing consistent, and re-syncing
-costs me nothing.
+scene — a single continuous take keeps tone and pacing consistent, and
+re-syncing costs nothing.
