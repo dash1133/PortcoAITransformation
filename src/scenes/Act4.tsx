@@ -187,7 +187,7 @@ export const SceneRecap: React.FC = () => {
       <RecapLine delay={beat(0.33)}>Build on the right architecture</RecapLine>
       <RecapLine delay={beat(0.441)}>Don&rsquo;t lock to a single LLM model</RecapLine>
       <RecapLine delay={beat(0.574)}>
-        Partner with a reliable vendor with AI credibility
+        Partner with a credible, reliable AI vendor
       </RecapLine>
     </div>
 

@@ -33,7 +33,7 @@ export const SCENES: {id: SceneId; seconds: number; words: number}[] = [
   {id: 'caseStudy', seconds: 16.5, words: 38},
   {id: 'architecture', seconds: 38.0, words: 91},
   {id: 'operatingModels', seconds: 16.5, words: 38},
-  {id: 'recap', seconds: 18.0, words: 41},
+  {id: 'recap', seconds: 17.5, words: 39},
   {id: 'signoff', seconds: 6.0, words: 7},
 ];
 

@@ -4,7 +4,7 @@
 Goal: **one continuous MP3** of the full narration, with clean, detectable
 gaps between scenes so the video can be auto-synced to the audio.
 
-**Eleven scenes → ten breaks.** Script tightened from 534 to **428 words**;
+**Eleven scenes → ten breaks.** Script tightened from 534 to **426 words**;
 the film runs **3:08** rather than 3:43.
 
 ---
@@ -76,7 +76,7 @@ We'll structure it your way. A dedicated AI Pod. Targeted staff augmentation. Or
 
 <break time="1.5s" />
 
-Don't scatter efforts and funds — build a strategic AI asset. Focus your program. Build on the right architecture. Don't lock to a single model. Partner with a vendor with real AI credibility. The impact: profitable growth and higher exit value.
+Don't scatter efforts and funds — build a strategic AI asset. Focus your program. Build on the right architecture. Don't lock to a single model. Partner with a credible, reliable AI vendor. The impact: profitable growth and higher exit value.
 
 <break time="1.5s" />
 
@@ -100,9 +100,9 @@ together. At ~150 wpm:
 | 7 | Case study | 38 | 15.2s | 16.5s |
 | 8 | The architecture | 91 | 36.4s | 38.0s |
 | 9 | Flexible operating models | 38 | 15.2s | 16.5s |
-| 10 | Recap | 41 | 16.4s | 18.0s |
+| 10 | Recap | 39 | 15.6s | 17.5s |
 | 11 | Sign-off | 7 | 2.8s | 6.0s |
-| | **Total** | **428** | **2:51** | **3:08** |
+| | **Total** | **426** | **2:50** | **3:08** |
 
 Each scene carries ~1.5s beyond its speech — the inter-scene break, split half
 before and half after, so nothing feels clipped at the cuts. Sign-off is held
