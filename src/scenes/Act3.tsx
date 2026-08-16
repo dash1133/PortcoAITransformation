@@ -146,52 +146,78 @@ export const SceneCaseStudy: React.FC = () => (
 // ---------------------------------------------------------------------------
 // SCENE 8 · WHAT WE ACTUALLY BUILD  (the architecture — hero scene)
 //
+// Layout note: the two things that sit OUTSIDE the boundary are placed so that
+// each connects to the Enterprise AI Core with a single straight segment —
+// systems below it, personal-productivity AI beside it. An earlier version put
+// personal AI directly above the boundary, which forced its connector to wrap
+// around the outside and collide with both the boundary edge and its label.
+//
 // Beat map, following the VO exactly:
 //   0.0s  title
 //   4.0s  Custom Workflows appears
 //   9.0s  Enterprise AI Core appears with its component chips
 //  20.0s  the boundary draws itself — "what we build · what you own"
-//  25.0s  the two outside boxes fade in (systems, personal productivity AI)
-//  33.0s  bidirectional arrows connect them to the Core
+//  25.0s  the two outside boxes fade in
+//  33.0s  bidirectional connectors land
 //  44.0s  kicker card
 // ---------------------------------------------------------------------------
 
-const BOX = {
-  left: 300,
-  width: 1320,
-  boundaryLeft: 210,
-  boundaryWidth: 1500,
+const ARCH = {
+  // the owned boundary
+  bx: 150,
+  by: 250,
+  bw: 1080,
+  bh: 500,
+  // boxes inside it
+  ix: 200,
+  iw: 980,
+  workflowsY: 300,
+  coreY: 500,
+  // centre line of the inside column — everything below hangs off it
+  cx: 690,
+  coreMidY: 605,
 };
 
 const OutsideBox: React.FC<{
   delay: number;
+  left: number;
   top: number;
+  width: number;
   title: string;
   sub: string;
-}> = ({delay, top, title, sub}) => (
-  <div style={{position: 'absolute', left: BOX.left, top, width: BOX.width}}>
+}> = ({delay, left, top, width, title, sub}) => (
+  <div style={{position: 'absolute', left, top, width}}>
     <Rise delay={delay} distance={16} dur={20}>
       <div
         style={{
-          border: '2px dashed #C9BFB5',
-          backgroundColor: '#F0EAE4',
+          border: '2px dashed #C4B9AE',
+          backgroundColor: '#EFE9E3',
           borderRadius: 12,
-          padding: '18px 28px',
+          padding: '18px 26px',
           textAlign: 'center',
         }}
       >
         <div
           style={{
-            fontSize: 27,
+            fontSize: 25,
             fontWeight: 600,
             color: COLORS.inkSoft,
-            letterSpacing: 2,
+            letterSpacing: 1.5,
             textTransform: 'uppercase',
+            lineHeight: 1.25,
           }}
         >
           {title}
         </div>
-        <div style={{fontSize: 24, fontWeight: 300, color: COLORS.inkMuted}}>
+        <div
+          style={{
+            fontSize: 22,
+            fontWeight: 300,
+            color: COLORS.inkMuted,
+            marginTop: 6,
+            lineHeight: 1.3,
+          }}
+        >
           {sub}
         </div>
       </div>
@@ -199,11 +225,7 @@ const OutsideBox: React.FC<{
   </div>
 );
 
-/**
- * Double-headed connector. Takes an SVG path so a run can leave the boundary,
- * travel down the outside edge, and re-enter at the Core — which is what the
- * personal-productivity-AI connection does.
- */
+/** Double-headed connector between two boxes. */
 const BiPath: React.FC<{delay: number; id: string; d: string}> = ({
   delay,
   id,
@@ -248,7 +270,6 @@ const BiPath: React.FC<{delay: number; id: string; d: string}> = ({
         fill="none"
         stroke={COLORS.orange}
         strokeWidth={3}
-        strokeLinejoin="round"
         markerStart={`url(#ms-${id})`}
         markerEnd={`url(#me-${id})`}
       />
@@ -262,7 +283,7 @@ const CoreChip: React.FC<{children: React.ReactNode}> = ({children}) => (
       border: `1.5px solid ${COLORS.orange}`,
       borderRadius: 999,
       padding: '9px 20px',
-      fontSize: 24,
+      fontSize: 23,
       fontWeight: 400,
       color: COLORS.ink,
       backgroundColor: COLORS.cream,
@@ -272,18 +293,23 @@ const CoreChip: React.FC<{children: React.ReactNode}> = ({children}) => (
   </span>
 );
 
+const CHIPS = [
+  'MCP connectors',
+  'Skills',
+  'Knowledge bases',
+  'Business & office templates',
+  'Components',
+];
+
 export const SceneArchitecture: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // Boundary rectangle draws itself.
-  const bTop = 268;
-  const bHeight = 442;
-  const perimeter = 2 * (BOX.boundaryWidth + bHeight);
+  const perimeter = 2 * (ARCH.bw + ARCH.bh);
   const draw = interpolate(frame, [600, 700], [perimeter, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const boundaryLabel = interpolate(frame, [690, 720], [0, 1], {
+  const label = interpolate(frame, [692, 722], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -291,7 +317,7 @@ export const SceneArchitecture: React.FC = () => {
   return (
     <Stage tone="light" padding={0}>
       <HoldOut at={1320} dur={22}>
-        <div style={{position: 'absolute', left: 150, top: 62}}>
+        <div style={{position: 'absolute', left: 150, top: 66}}>
           <Rise delay={2} distance={14}>
             <div
               style={{
@@ -306,25 +332,17 @@ export const SceneArchitecture: React.FC = () => {
           </Rise>
         </div>
 
-        {/* OUTSIDE · personal productivity AI */}
-        <OutsideBox
-          delay={760}
-          top={150}
-          title="Personal Productivity AI Platforms"
-          sub="Claude · Copilot · ChatGPT Enterprise"
-        />
-
-        {/* THE BOUNDARY */}
+        {/* THE BOUNDARY — draws itself */}
         <svg
           style={{position: 'absolute', left: 0, top: 0}}
           width={1920}
           height={1080}
         >
           <rect
-            x={BOX.boundaryLeft}
-            y={bTop}
-            width={BOX.boundaryWidth}
-            height={bHeight}
+            x={ARCH.bx}
+            y={ARCH.by}
+            width={ARCH.bw}
+            height={ARCH.bh}
             rx={18}
             fill="none"
             stroke={COLORS.orange}
@@ -337,14 +355,14 @@ export const SceneArchitecture: React.FC = () => {
         <div
           style={{
             position: 'absolute',
-            left: BOX.boundaryLeft + 34,
-            top: bTop - 20,
-            opacity: boundaryLabel,
+            left: ARCH.bx + 32,
+            top: ARCH.by - 19,
+            opacity: label,
             backgroundColor: COLORS.offWhite,
-            padding: '0 16px',
-            fontSize: 24,
+            padding: '0 14px',
+            fontSize: 23,
             fontWeight: 700,
-            letterSpacing: 3,
+            letterSpacing: 2.5,
             textTransform: 'uppercase',
             color: COLORS.orange,
           }}
@@ -354,7 +372,12 @@ export const SceneArchitecture: React.FC = () => {
 
         {/* INSIDE · custom workflows */}
         <div
-          style={{position: 'absolute', left: BOX.left, top: 320, width: BOX.width}}
+          style={{
+            position: 'absolute',
+            left: ARCH.ix,
+            top: ARCH.workflowsY,
+            width: ARCH.iw,
+          }}
         >
           <Rise delay={120} distance={20} dur={24}>
             <div
@@ -376,11 +399,14 @@ export const SceneArchitecture: React.FC = () => {
           </Rise>
         </div>
 
-        <BiPath delay={1000} id="wf" d="M 960 447 L 960 506" />
-
         {/* INSIDE · enterprise AI core */}
         <div
-          style={{position: 'absolute', left: BOX.left, top: 512, width: BOX.width}}
+          style={{
+            position: 'absolute',
+            left: ARCH.ix,
+            top: ARCH.coreY,
+            width: ARCH.iw,
+          }}
         >
           <Rise delay={270} distance={20} dur={26}>
             <div
@@ -402,44 +428,43 @@ export const SceneArchitecture: React.FC = () => {
                   gap: 12,
                   justifyContent: 'center',
                   flexWrap: 'wrap',
-                  marginTop: 16,
+                  marginTop: 18,
                 }}
               >
-                <Rise delay={330} distance={10} dur={18}>
-                  <CoreChip>MCP connectors</CoreChip>
-                </Rise>
-                <Rise delay={356} distance={10} dur={18}>
-                  <CoreChip>Skills</CoreChip>
-                </Rise>
-                <Rise delay={382} distance={10} dur={18}>
-                  <CoreChip>Knowledge bases</CoreChip>
-                </Rise>
-                <Rise delay={408} distance={10} dur={18}>
-                  <CoreChip>Business &amp; office templates</CoreChip>
-                </Rise>
-                <Rise delay={434} distance={10} dur={18}>
-                  <CoreChip>Components</CoreChip>
-                </Rise>
+                {CHIPS.map((c, i) => (
+                  <Rise key={c} delay={330 + i * 26} distance={10} dur={18}>
+                    <CoreChip>{c}</CoreChip>
+                  </Rise>
+                ))}
               </div>
             </div>
           </Rise>
         </div>
 
-        {/* OUTSIDE · enterprise systems */}
+        {/* OUTSIDE · personal productivity AI, beside the Core */}
+        <OutsideBox
+          delay={760}
+          left={1400}
+          top={512}
+          width={400}
+          title="Personal Productivity AI Platforms"
+          sub="Claude · Copilot · ChatGPT Enterprise"
+        />
+
+        {/* OUTSIDE · enterprise systems, below the Core */}
         <OutsideBox
           delay={820}
-          top={840}
+          left={250}
+          top={856}
+          width={880}
           title="Enterprise Systems & Data"
           sub="ERP · CRM · HCM · document stores — governed, RBAC-scoped, audited"
         />
 
-        {/* personal AI leaves the frame edge and re-enters at the Core */}
-        <BiPath
-          delay={1000}
-          id="ppai"
-          d="M 1620 262 L 1800 262 L 1800 592 L 1624 592"
-        />
-        <BiPath delay={1040} id="sys" d="M 960 838 L 960 676" />
+        {/* connectors — each a single straight segment */}
+        <BiPath delay={1000} id="wf" d="M 690 452 L 690 494" />
+        <BiPath delay={1000} id="ppai" d="M 1186 605 L 1394 605" />
+        <BiPath delay={1040} id="sys" d="M 690 850 L 690 722" />
       </HoldOut>
 
       <ArchKicker />
