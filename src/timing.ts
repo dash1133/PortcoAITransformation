@@ -16,9 +16,9 @@ export type SceneId =
   | 'reality'
   | 'needs'
   | 'deliver'
-  | 'pod'
-  | 'caseStudy'
   | 'architecture'
+  | 'caseStudy'
+  | 'pod'
   | 'operatingModels'
   | 'recap'
   | 'signoff';
@@ -29,9 +29,9 @@ export const SCENES: {id: SceneId; seconds: number; words: number}[] = [
   {id: 'reality', seconds: 17.5, words: 40},
   {id: 'needs', seconds: 14.0, words: 31},
   {id: 'deliver', seconds: 26.5, words: 63},
-  {id: 'pod', seconds: 16.0, words: 36},
-  {id: 'caseStudy', seconds: 16.5, words: 38},
   {id: 'architecture', seconds: 38.0, words: 91},
+  {id: 'caseStudy', seconds: 35.0, words: 84},
+  {id: 'pod', seconds: 16.0, words: 36},
   {id: 'operatingModels', seconds: 16.5, words: 38},
   {id: 'recap', seconds: 17.5, words: 39},
   {id: 'signoff', seconds: 6.0, words: 7},

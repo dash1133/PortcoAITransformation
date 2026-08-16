@@ -4,8 +4,8 @@
 Goal: **one continuous MP3** of the full narration, with clean, detectable
 gaps between scenes so the video can be auto-synced to the audio.
 
-**Eleven scenes → ten breaks.** Script tightened from 534 to **426 words**;
-the film runs **3:08** rather than 3:43.
+**Eleven scenes → ten breaks.** **472 words**, **3:26**. The architecture scene now leads into the case study,
+which illustrates that architecture with one company's real build.
 
 ---
 
@@ -60,15 +60,15 @@ We build these assets as a platform focused on the prioritized workflows that dr
 
 <break time="1.5s" />
 
-We deliver through a dedicated AI Pod that reports into your AI transformation team, led by an engineering manager — product, engineering, UX, QA and DevOps. Our founder and CEO is ultimately accountable for every outcome.
-
-<break time="1.5s" />
-
-One mid-market portfolio company. Three disconnected systems — operational data, event documents, a policy library — now answered by a single Planner agent. Staff ask in plain language. Questions that took hours take seconds. New client wins doubled.
-
-<break time="1.5s" />
-
 Here's what we build, and where the line sits. Inside: the custom workflows that run your business, and beneath them the Enterprise AI Core — connectors, skills, knowledge bases, templates and components. That's the asset. That's what you own. Outside sit two things you already have: your enterprise systems and data, and the personal productivity AI your people use daily. Both connect to the Core, both ways, through the same governed standards. So your data stays protected, your people's AI becomes enterprise-aware, and every new workflow starts from what's already there.
+
+<break time="1.5s" />
+
+Take a heavy-equipment service business. We mapped their top five processes — warranty recovery, procurement and AP, quote-to-cash, bay operations, parts and inventory. Beneath them, one Core: connectors into their ERP, CRM and OEM warranty portals, their warranty policy knowledge, their claim and appeal templates. Month three of twenty-four. Warranty receivables is live, and one and a half million dollars of stuck claims is now visible and being worked. The other four are sequenced behind it — each one faster, because the Core is already there.
+
+<break time="1.5s" />
+
+We deliver through a dedicated AI Pod that reports into your AI transformation team, led by an engineering manager — product, engineering, UX, QA and DevOps. Our founder and CEO is ultimately accountable for every outcome.
 
 <break time="1.5s" />
 
@@ -96,13 +96,13 @@ together. At ~150 wpm:
 | 3 | Reality inside a PortCo | 40 | 16.0s | 17.5s |
 | 4 | What a portfolio company needs | 31 | 12.4s | 14.0s |
 | 5 | What we deliver | 63 | 25.2s | 26.5s |
-| 6 | The AI Pod | 36 | 14.4s | 16.0s |
-| 7 | Case study | 38 | 15.2s | 16.5s |
-| 8 | The architecture | 91 | 36.4s | 38.0s |
+| 6 | The architecture | 91 | 36.4s | 38.0s |
+| 7 | Case study | 84 | 33.6s | 35.0s |
+| 8 | The AI Pod | 36 | 14.4s | 16.0s |
 | 9 | Flexible operating models | 38 | 15.2s | 16.5s |
 | 10 | Recap | 39 | 15.6s | 17.5s |
 | 11 | Sign-off | 7 | 2.8s | 6.0s |
-| | **Total** | **426** | **2:50** | **3:08** |
+| | **Total** | **472** | **3:09** | **3:26** |
 
 Each scene carries ~1.5s beyond its speech — the inter-scene break, split half
 before and half after, so nothing feels clipped at the cuts. Sign-off is held

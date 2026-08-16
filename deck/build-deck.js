@@ -273,7 +273,239 @@ const card = (s, o) =>
 }
 
 // ===========================================================================
-// 7 · SECTION — USE CASES
+// 7 · ARCHITECTURE
+// ===========================================================================
+{
+  const s = pres.addSlide();
+  s.background = {color: C.paper};
+  mark(s);
+  head(s, 'Architecture', 'The architecture of a strategic AI asset');
+
+  // owned boundary
+  s.addShape(pres.ShapeType.roundRect, {
+    x: M, y: 2.05, w: 7.9, h: 3.55, rectRadius: 0.1,
+    fill: {color: 'FFFFFF'}, line: {color: C.orange, width: 2},
+  });
+  s.addText('WHAT WE BUILD · WHAT YOU OWN', {
+    x: M + 0.24, y: 1.88, w: 3.6, h: 0.32,
+    fontFace: BODY, fontSize: 10.5, bold: true, charSpacing: 1.6,
+    color: C.orange, fill: {color: C.paper}, align: 'center',
+    valign: 'middle', margin: 0,
+  });
+
+  card(s, {x: M + 0.32, y: 2.4, w: 7.26, h: 0.86, line: C.orange});
+  s.addText('Custom Workflows', {x: M + 0.32, y: 2.5, w: 7.26, h: 0.4,
+    fontFace: HEAD, fontSize: 18, bold: true, color: C.ink, align: 'center', margin: 0});
+  s.addText('the priority workflows that drive profit', {x: M + 0.32, y: 2.88, w: 7.26, h: 0.32,
+    fontFace: BODY, fontSize: 12, color: C.inkSoft, align: 'center', margin: 0});
+
+  s.addShape(pres.ShapeType.line, {x: M + 3.95, y: 3.32, w: 0, h: 0.36,
+    line: {color: C.orange, width: 1.5, beginArrowType: 'triangle', endArrowType: 'triangle'}});
+
+  card(s, {x: M + 0.32, y: 3.72, w: 7.26, h: 1.6, shadow: true});
+  s.addText('Enterprise AI Core', {x: M + 0.32, y: 3.85, w: 7.26, h: 0.42,
+    fontFace: HEAD, fontSize: 19, bold: true, color: C.orange, align: 'center', margin: 0});
+  const chips = ['MCP connectors', 'Skills', 'Knowledge bases', 'Business & office templates', 'Components'];
+  const cw = [1.6, 0.85, 1.6, 2.5, 1.35];
+  let cx = M + 0.32 + (7.26 - (cw[0] + cw[1] + cw[2] + 0.24)) / 2;
+  chips.slice(0, 3).forEach((t, i) => {
+    s.addText(t, {shape: pres.ShapeType.roundRect, rectRadius: 0.14,
+      x: cx, y: 4.34, w: cw[i], h: 0.36, fill: {color: C.cream},
+      line: {color: C.orange, width: 0.75}, fontFace: BODY, fontSize: 10.5,
+      color: C.ink, align: 'center', valign: 'middle', margin: 0});
+    cx += cw[i] + 0.12;
+  });
+  let cx2 = M + 0.32 + (7.26 - (cw[3] + cw[4] + 0.12)) / 2;
+  chips.slice(3).forEach((t, i) => {
+    s.addText(t, {shape: pres.ShapeType.roundRect, rectRadius: 0.14,
+      x: cx2, y: 4.78, w: cw[i + 3], h: 0.36, fill: {color: C.cream},
+      line: {color: C.orange, width: 0.75}, fontFace: BODY, fontSize: 10.5,
+      color: C.ink, align: 'center', valign: 'middle', margin: 0});
+    cx2 += cw[i + 3] + 0.12;
+  });
+
+  // outside — personal productivity AI
+  s.addShape(pres.ShapeType.roundRect, {
+    x: 9.35, y: 3.5, w: 3.35, h: 1.15, rectRadius: 0.08,
+    fill: {color: 'EFE9E3'}, line: {color: 'C4B9AE', width: 1, dashType: 'dash'},
+  });
+  s.addText('PERSONAL PRODUCTIVITY AI', {x: 9.35, y: 3.62, w: 3.35, h: 0.35,
+    fontFace: BODY, fontSize: 10.5, bold: true, charSpacing: 0.8,
+    color: C.inkSoft, align: 'center', margin: 0});
+  s.addText('Claude · Copilot · ChatGPT Enterprise', {x: 9.35, y: 3.98, w: 3.35, h: 0.5,
+    fontFace: BODY, fontSize: 10.5, color: C.inkMute, align: 'center', margin: 0});
+  s.addShape(pres.ShapeType.line, {x: 8.62, y: 4.08, w: 0.66, h: 0,
+    line: {color: C.orange, width: 1.5, beginArrowType: 'triangle', endArrowType: 'triangle'}});
+
+  // outside — enterprise systems
+  s.addShape(pres.ShapeType.line, {x: M + 3.95, y: 5.64, w: 0, h: 0.42,
+    line: {color: C.orange, width: 1.5, beginArrowType: 'triangle', endArrowType: 'triangle'}});
+  s.addShape(pres.ShapeType.roundRect, {
+    x: M + 0.7, y: 6.06, w: 6.5, h: 0.72, rectRadius: 0.08,
+    fill: {color: 'EFE9E3'}, line: {color: 'C4B9AE', width: 1, dashType: 'dash'},
+  });
+  s.addText('ENTERPRISE SYSTEMS & DATA', {x: M + 0.7, y: 6.14, w: 6.5, h: 0.32,
+    fontFace: BODY, fontSize: 10.5, bold: true, charSpacing: 0.8,
+    color: C.inkSoft, align: 'center', margin: 0});
+  s.addText('ERP · CRM · HCM — governed, RBAC-scoped, audited', {x: M + 0.7, y: 6.44, w: 6.5, h: 0.3,
+    fontFace: BODY, fontSize: 10.5, color: C.inkMute, align: 'center', margin: 0});
+
+  s.addText(
+    'The tools are how you talk to it.\nThe Core is what you own.',
+    {x: 9.35, y: 5.4, w: 3.35, h: 1.0, fontFace: HEAD, fontSize: 12,
+     bold: true, color: C.ink, margin: 0, lineSpacingMultiple: 1.25},
+  );
+  s.addNotes('Everything inside the line is new and owned. Everything outside it already exists.');
+}
+
+// ===========================================================================
+// 8 · CASE STUDY — THE ARCHITECTURE INSTANTIATED
+// ===========================================================================
+{
+  const s = pres.addSlide();
+  s.background = {color: C.paper};
+  mark(s);
+  head(s, 'Case study', 'The same architecture, instantiated');
+  s.addText(
+    'A mid-market portfolio company in heavy-duty equipment service and repair — multi-branch work orders, warranty claims, parts and field service.',
+    {x: M, y: 1.72, w: 10.0, h: 0.4, fontFace: BODY, fontSize: 13.5,
+     color: C.inkSoft, italic: true, margin: 0},
+  );
+
+  // --- the five prioritized workflows, first one live ---
+  s.addText('CUSTOM WORKFLOWS · THE FIVE PRIORITIZED PROCESSES', {
+    x: M, y: 2.25, w: 7, h: 0.28, fontFace: BODY, fontSize: 10,
+    bold: true, charSpacing: 1.6, color: C.inkMute, margin: 0,
+  });
+  const procs = [
+    ['01', 'Warranty recovery', 'validate · submit · reconcile · appeal', true],
+    ['02', 'Procurement & AP', 'intake · three-way match · gated posting', false],
+    ['03', 'Quote-to-cash', 'quoting · stale-quote chase · invoicing', false],
+    ['04', 'Bay operations', 'work orders · dispatch · technician time', false],
+    ['05', 'Parts & inventory', 'on-hand · transfers · cycle counts', false],
+  ];
+  const pw = (CW - 4 * 0.16) / 5;
+  procs.forEach(([n, t, d, live], i) => {
+    const x = M + i * (pw + 0.16);
+    s.addShape(pres.ShapeType.roundRect, {
+      x, y: 2.6, w: pw, h: 1.12, rectRadius: 0.08,
+      fill: {color: live ? C.cream : 'F1ECE7'},
+      line: {color: live ? C.orange : 'D5CCC3', width: live ? 1.75 : 1},
+    });
+    s.addText(live ? `${n}  ·  LIVE` : n, {
+      x: x + 0.18, y: 2.7, w: pw - 0.36, h: 0.26,
+      fontFace: BODY, fontSize: 9.5, bold: true, charSpacing: 1.2,
+      color: live ? C.orange : C.inkMute, margin: 0,
+    });
+    s.addText(t, {x: x + 0.18, y: 2.96, w: pw - 0.36, h: 0.34,
+      fontFace: HEAD, fontSize: 13, bold: true,
+      color: live ? C.ink : C.inkSoft, margin: 0});
+    s.addText(d, {x: x + 0.18, y: 3.3, w: pw - 0.36, h: 0.38,
+      fontFace: BODY, fontSize: 9.5, color: C.inkMute, margin: 0});
+  });
+
+  s.addShape(pres.ShapeType.line, {
+    x: W / 2, y: 3.78, w: 0, h: 0.3,
+    line: {color: C.orange, width: 1.5,
+      beginArrowType: 'triangle', endArrowType: 'triangle'},
+  });
+
+  // --- their Core ---
+  s.addShape(pres.ShapeType.roundRect, {
+    x: M, y: 4.12, w: CW, h: 2.05, rectRadius: 0.1,
+    fill: {color: C.white}, line: {color: C.orange, width: 2},
+  });
+  s.addText('ENTERPRISE AI CORE · BUILT ONCE, REUSED BY ALL FIVE', {
+    x: M, y: 4.26, w: CW, h: 0.3, fontFace: BODY, fontSize: 10.5,
+    bold: true, charSpacing: 1.6, color: C.orange, align: 'center', margin: 0,
+  });
+  const layers = [
+    ['Connectors', 'dealer-management ERP · CRM · HCM · OEM warranty portals · enterprise data lake'],
+    ['Knowledge', 'OEM warranty policy manuals · coverage and rate tables · service manuals · SOPs'],
+    ['Templates', 'claim forms · appeal letters · write-off memos · quotes · journal entries'],
+  ];
+  layers.forEach(([t, d], i) => {
+    const y = 4.66 + i * 0.46;
+    s.addText(t, {x: M + 0.35, y, w: 1.6, h: 0.34,
+      fontFace: HEAD, fontSize: 13, bold: true, color: C.ink, margin: 0});
+    s.addText(d, {x: M + 2.0, y: y + 0.02, w: CW - 2.5, h: 0.34,
+      fontFace: BODY, fontSize: 12, color: C.inkSoft, margin: 0});
+  });
+  s.addText(
+    'Identity-scoped end to end — 23 roles inheriting the same access controls as the systems of record.',
+    {x: M, y: 6.32, w: 11.0, h: 0.35, fontFace: BODY, fontSize: 12,
+     color: C.inkMute, italic: true, margin: 0},
+  );
+  s.addNotes('This is the previous slide made concrete: five workflows on top, one Core beneath, built from their own systems and know-how.');
+}
+
+// ===========================================================================
+// 9 · CASE STUDY — MONTH 3 OF 24
+// ===========================================================================
+{
+  const s = pres.addSlide();
+  s.background = {color: C.paper};
+  mark(s);
+  head(s, 'Case study', 'Month 3 of a 24-month journey');
+
+  s.addText(
+    'Warranty receivables went first. The other four processes are scoped and sequenced behind it — each reusing the same connectors, knowledge and policy gates, so every build after the first is faster and cheaper than the one before.',
+    {x: M, y: 1.78, w: 6.35, h: 1.1, fontFace: BODY, fontSize: 14,
+     color: C.inkSoft, margin: 0},
+  );
+
+  // progress marker
+  const barX = M, barY = 3.15, barW = 6.35;
+  s.addShape(pres.ShapeType.roundRect, {
+    x: barX, y: barY, w: barW, h: 0.26, rectRadius: 0.13,
+    fill: {color: 'E8DFD6'}, line: {color: 'E8DFD6', width: 0},
+  });
+  s.addShape(pres.ShapeType.roundRect, {
+    x: barX, y: barY, w: barW * (3 / 24), h: 0.26, rectRadius: 0.13,
+    fill: {color: C.orange}, line: {color: C.orange, width: 0},
+  });
+  s.addText('Month 3', {x: barX, y: barY + 0.34, w: 2, h: 0.3,
+    fontFace: BODY, fontSize: 11, bold: true, color: C.orange, margin: 0});
+  s.addText('Month 24', {x: barX + barW - 2, y: barY + 0.34, w: 2, h: 0.3,
+    fontFace: BODY, fontSize: 11, color: C.inkMute, align: 'right', margin: 0});
+
+  s.addText('WHAT THE FULL BUILD TARGETS', {
+    x: M, y: 4.15, w: 6.35, h: 0.28, fontFace: BODY, fontSize: 10,
+    bold: true, charSpacing: 1.6, color: C.inkMute, margin: 0,
+  });
+  [['≥ 25%', 'of the stuck warranty queue recovered or dispositioned'],
+   ['− 30%', 'days-to-cash on warranty claims'],
+   ['− 60%', 'processor hours per claim']].forEach(([v, l], i) => {
+    const y = 4.5 + i * 0.55;
+    s.addText(v, {x: M, y, w: 1.15, h: 0.42, fontFace: HEAD, fontSize: 17,
+      bold: true, color: C.ink, margin: 0});
+    s.addText(l, {x: M + 1.25, y: y + 0.04, w: 5.1, h: 0.42,
+      fontFace: BODY, fontSize: 12.5, color: C.inkSoft, margin: 0});
+  });
+
+  // early signals panel
+  const px = 7.35, pw2 = W - px - M;
+  s.addShape(pres.ShapeType.roundRect, {
+    x: px, y: 1.78, w: pw2, h: 4.5, rectRadius: 0.1,
+    fill: {color: C.white}, line: {color: C.orange, width: 1.5},
+  });
+  s.addText('EARLY SIGNALS', {
+    x: px + 0.4, y: 2.02, w: pw2 - 0.8, h: 0.3, fontFace: BODY, fontSize: 10.5,
+    bold: true, charSpacing: 1.6, color: C.orange, margin: 0,
+  });
+  [['$1.5M+', 'of stuck warranty claims surfaced and being worked'],
+   ['218', 'tables in the decision store — every proposal, gate decision and approval auditable'],
+   ['23', 'roles scoped end to end, day one']].forEach(([v, l], i) => {
+    const y = 2.5 + i * 1.28;
+    s.addText(v, {x: px + 0.4, y, w: pw2 - 0.8, h: 0.55,
+      fontFace: HEAD, fontSize: 28, bold: true, color: C.orange, margin: 0});
+    s.addText(l, {x: px + 0.4, y: y + 0.56, w: pw2 - 0.8, h: 0.62,
+      fontFace: BODY, fontSize: 12.5, color: C.inkSoft, margin: 0});
+  });
+  s.addNotes('Honest framing: one workflow live, four sequenced. The compounding argument is the point — each build after the first is cheaper.');
+}
+// ===========================================================================
+// 10 · SECTION — USE CASES
 // ===========================================================================
 {
   const s = pres.addSlide();
@@ -297,7 +529,7 @@ const card = (s, o) =>
 }
 
 // ===========================================================================
-// 8 · USE CASES TABLE
+// 11 · USE CASES TABLE
 // ===========================================================================
 {
   const s = pres.addSlide();
@@ -385,69 +617,7 @@ const card = (s, o) =>
 }
 
 // ===========================================================================
-// 9 · CASE STUDY
-// ===========================================================================
-{
-  const s = pres.addSlide();
-  s.background = {color: C.paper};
-  mark(s);
-  head(s, 'Case study', 'Three systems, one Planner agent');
-
-  const srcY = 2.0, srcW = 3.1;
-  ['QuickBase', 'Event Documents', 'Policy Library'].forEach((t, i) => {
-    const x = 1.55 + i * (srcW + 0.55);
-    s.addShape(pres.ShapeType.roundRect, {
-      x, y: srcY, w: srcW, h: 0.6, rectRadius: 0.08,
-      fill: {color: 'EFE9E3'}, line: {color: 'C4B9AE', width: 1, dashType: 'dash'},
-    });
-    s.addText(t, {x, y: srcY, w: srcW, h: 0.6, fontFace: BODY, fontSize: 13,
-      bold: true, color: C.inkSoft, align: 'center', valign: 'middle', margin: 0});
-    s.addShape(pres.ShapeType.line, {
-      x: x + srcW / 2, y: srcY + 0.6, w: 0, h: 0.32,
-      line: {color: C.orange, width: 1.5},
-    });
-  });
-  s.addShape(pres.ShapeType.line, {
-    x: 1.55 + srcW / 2, y: srcY + 0.92, w: 2 * (srcW + 0.55), h: 0,
-    line: {color: C.orange, width: 1.5},
-  });
-  s.addShape(pres.ShapeType.line, {
-    x: W / 2, y: srcY + 0.92, w: 0, h: 0.4,
-    line: {color: C.orange, width: 1.5, endArrowType: 'triangle'},
-  });
-
-  card(s, {x: 4.3, y: 3.35, w: 4.7, h: 0.72, shadow: true});
-  s.addText('Planner Agent', {x: 4.3, y: 3.35, w: 4.7, h: 0.72,
-    fontFace: HEAD, fontSize: 20, bold: true, color: C.orange,
-    align: 'center', valign: 'middle', margin: 0});
-
-  s.addShape(pres.ShapeType.line, {
-    x: W / 2, y: 4.07, w: 0, h: 0.42,
-    line: {color: C.orange, width: 1.5, beginArrowType: 'triangle', endArrowType: 'triangle'},
-  });
-  s.addShape(pres.ShapeType.roundRect, {
-    x: 4.05, y: 4.49, w: 5.2, h: 0.6, rectRadius: 0.08,
-    fill: {color: C.cream}, line: {color: C.orange, width: 1.25},
-  });
-  s.addText('Staff ask in plain language', {x: 4.05, y: 4.49, w: 5.2, h: 0.6,
-    fontFace: BODY, fontSize: 13.5, bold: true, color: C.ink,
-    align: 'center', valign: 'middle', margin: 0});
-
-  [['3 → 1', 'systems unified into one interface'],
-   ['Hours → seconds', 'time to answer'],
-   ['2×', 'new client wins']].forEach(([v, l], i) => {
-    const x = M + i * (CW / 3);
-    s.addText(v, {x, y: 5.5, w: CW / 3 - 0.3, h: 0.6,
-      fontFace: HEAD, fontSize: 26, bold: true, color: C.orange,
-      align: 'center', margin: 0});
-    s.addText(l, {x, y: 6.1, w: CW / 3 - 0.3, h: 0.4,
-      fontFace: BODY, fontSize: 12, color: C.inkSoft, align: 'center', margin: 0});
-  });
-  s.addNotes('Mid-market proof: a conversational agent over three previously disconnected systems.');
-}
-
-// ===========================================================================
-// 10 · THE AI POD
+// 12 · THE AI POD
 // ===========================================================================
 {
   const s = pres.addSlide();
@@ -511,93 +681,7 @@ const card = (s, o) =>
 }
 
 // ===========================================================================
-// 11 · ARCHITECTURE
-// ===========================================================================
-{
-  const s = pres.addSlide();
-  s.background = {color: C.paper};
-  mark(s);
-  head(s, 'Architecture', 'The architecture of a strategic AI asset');
-
-  // owned boundary
-  s.addShape(pres.ShapeType.roundRect, {
-    x: M, y: 2.05, w: 7.9, h: 3.55, rectRadius: 0.1,
-    fill: {color: 'FFFFFF'}, line: {color: C.orange, width: 2},
-  });
-  s.addText('WHAT WE BUILD · WHAT YOU OWN', {
-    x: M + 0.24, y: 1.88, w: 3.6, h: 0.32,
-    fontFace: BODY, fontSize: 10.5, bold: true, charSpacing: 1.6,
-    color: C.orange, fill: {color: C.paper}, align: 'center',
-    valign: 'middle', margin: 0,
-  });
-
-  card(s, {x: M + 0.32, y: 2.4, w: 7.26, h: 0.86, line: C.orange});
-  s.addText('Custom Workflows', {x: M + 0.32, y: 2.5, w: 7.26, h: 0.4,
-    fontFace: HEAD, fontSize: 18, bold: true, color: C.ink, align: 'center', margin: 0});
-  s.addText('the priority workflows that drive profit', {x: M + 0.32, y: 2.88, w: 7.26, h: 0.32,
-    fontFace: BODY, fontSize: 12, color: C.inkSoft, align: 'center', margin: 0});
-
-  s.addShape(pres.ShapeType.line, {x: M + 3.95, y: 3.32, w: 0, h: 0.36,
-    line: {color: C.orange, width: 1.5, beginArrowType: 'triangle', endArrowType: 'triangle'}});
-
-  card(s, {x: M + 0.32, y: 3.72, w: 7.26, h: 1.6, shadow: true});
-  s.addText('Enterprise AI Core', {x: M + 0.32, y: 3.85, w: 7.26, h: 0.42,
-    fontFace: HEAD, fontSize: 19, bold: true, color: C.orange, align: 'center', margin: 0});
-  const chips = ['MCP connectors', 'Skills', 'Knowledge bases', 'Business & office templates', 'Components'];
-  const cw = [1.6, 0.85, 1.6, 2.5, 1.35];
-  let cx = M + 0.32 + (7.26 - (cw[0] + cw[1] + cw[2] + 0.24)) / 2;
-  chips.slice(0, 3).forEach((t, i) => {
-    s.addText(t, {shape: pres.ShapeType.roundRect, rectRadius: 0.14,
-      x: cx, y: 4.34, w: cw[i], h: 0.36, fill: {color: C.cream},
-      line: {color: C.orange, width: 0.75}, fontFace: BODY, fontSize: 10.5,
-      color: C.ink, align: 'center', valign: 'middle', margin: 0});
-    cx += cw[i] + 0.12;
-  });
-  let cx2 = M + 0.32 + (7.26 - (cw[3] + cw[4] + 0.12)) / 2;
-  chips.slice(3).forEach((t, i) => {
-    s.addText(t, {shape: pres.ShapeType.roundRect, rectRadius: 0.14,
-      x: cx2, y: 4.78, w: cw[i + 3], h: 0.36, fill: {color: C.cream},
-      line: {color: C.orange, width: 0.75}, fontFace: BODY, fontSize: 10.5,
-      color: C.ink, align: 'center', valign: 'middle', margin: 0});
-    cx2 += cw[i + 3] + 0.12;
-  });
-
-  // outside — personal productivity AI
-  s.addShape(pres.ShapeType.roundRect, {
-    x: 9.35, y: 3.5, w: 3.35, h: 1.15, rectRadius: 0.08,
-    fill: {color: 'EFE9E3'}, line: {color: 'C4B9AE', width: 1, dashType: 'dash'},
-  });
-  s.addText('PERSONAL PRODUCTIVITY AI', {x: 9.35, y: 3.62, w: 3.35, h: 0.35,
-    fontFace: BODY, fontSize: 10.5, bold: true, charSpacing: 0.8,
-    color: C.inkSoft, align: 'center', margin: 0});
-  s.addText('Claude · Copilot · ChatGPT Enterprise', {x: 9.35, y: 3.98, w: 3.35, h: 0.5,
-    fontFace: BODY, fontSize: 10.5, color: C.inkMute, align: 'center', margin: 0});
-  s.addShape(pres.ShapeType.line, {x: 8.62, y: 4.08, w: 0.66, h: 0,
-    line: {color: C.orange, width: 1.5, beginArrowType: 'triangle', endArrowType: 'triangle'}});
-
-  // outside — enterprise systems
-  s.addShape(pres.ShapeType.line, {x: M + 3.95, y: 5.64, w: 0, h: 0.42,
-    line: {color: C.orange, width: 1.5, beginArrowType: 'triangle', endArrowType: 'triangle'}});
-  s.addShape(pres.ShapeType.roundRect, {
-    x: M + 0.7, y: 6.06, w: 6.5, h: 0.72, rectRadius: 0.08,
-    fill: {color: 'EFE9E3'}, line: {color: 'C4B9AE', width: 1, dashType: 'dash'},
-  });
-  s.addText('ENTERPRISE SYSTEMS & DATA', {x: M + 0.7, y: 6.14, w: 6.5, h: 0.32,
-    fontFace: BODY, fontSize: 10.5, bold: true, charSpacing: 0.8,
-    color: C.inkSoft, align: 'center', margin: 0});
-  s.addText('ERP · CRM · HCM — governed, RBAC-scoped, audited', {x: M + 0.7, y: 6.44, w: 6.5, h: 0.3,
-    fontFace: BODY, fontSize: 10.5, color: C.inkMute, align: 'center', margin: 0});
-
-  s.addText(
-    'The tools are how you talk to it.\nThe Core is what you own.',
-    {x: 9.35, y: 5.4, w: 3.35, h: 1.0, fontFace: HEAD, fontSize: 12,
-     bold: true, color: C.ink, margin: 0, lineSpacingMultiple: 1.25},
-  );
-  s.addNotes('Everything inside the line is new and owned. Everything outside it already exists.');
-}
-
-// ===========================================================================
-// 12 · OPERATING MODELS
+// 13 · OPERATING MODELS
 // ===========================================================================
 {
   const s = pres.addSlide();
@@ -635,7 +719,7 @@ const card = (s, o) =>
 }
 
 // ===========================================================================
-// 13 · RECAP
+// 14 · RECAP
 // ===========================================================================
 {
   const s = pres.addSlide();
@@ -681,7 +765,7 @@ const card = (s, o) =>
 }
 
 // ===========================================================================
-// 14 · SIGN-OFF
+// 15 · SIGN-OFF
 // ===========================================================================
 {
   const s = pres.addSlide();

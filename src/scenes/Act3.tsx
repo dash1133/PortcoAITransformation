@@ -236,155 +236,261 @@ export const ScenePod: React.FC = () => {
 };
 
 // ---------------------------------------------------------------------------
-// SCENE 7 · CASE STUDY
-// Three disconnected sources answered by one agent, plus the outcomes.
+// SCENE 7 · CASE STUDY — THE ARCHITECTURE INSTANTIATED
+//
+// Deliberately mirrors the previous scene: five workflows on top, one Core
+// beneath. Same shape, now filled with one company's actual systems and
+// know-how — and honest about being three months into twenty-four.
 // ---------------------------------------------------------------------------
 
-const SourceBox: React.FC<{delay: number; left: number; label: string}> = ({
-  delay,
-  left,
-  label,
-}) => (
-  <div style={{position: 'absolute', left, top: 300, width: 340}}>
-    <Rise delay={delay} distance={16} dur={20}>
-      <div
-        style={{
-          border: '2px dashed #C4B9AE',
-          backgroundColor: '#EFE9E3',
-          borderRadius: 12,
-          padding: '18px 20px',
-          textAlign: 'center',
-        }}
-      >
-        <div style={{fontSize: 27, fontWeight: 600, color: COLORS.inkSoft}}>
-          {label}
-        </div>
-      </div>
-    </Rise>
-  </div>
-);
+const PROCS = [
+  {n: '01', t: 'Warranty recovery', d: 'validate · submit · reconcile'},
+  {n: '02', t: 'Procurement & AP', d: 'match · gated posting'},
+  {n: '03', t: 'Quote-to-cash', d: 'quote · chase · invoice'},
+  {n: '04', t: 'Bay operations', d: 'work orders · dispatch'},
+  {n: '05', t: 'Parts & inventory', d: 'on-hand · transfers'},
+];
 
-const Outcome: React.FC<{delay: number; value: string; label: string}> = ({
-  delay,
-  value,
-  label,
-}) => (
-  <Rise delay={delay} distance={22} dur={22} style={{flex: 1}}>
-    <div style={{textAlign: 'center'}}>
-      <div
-        style={{
-          fontSize: 52,
-          fontWeight: 700,
-          letterSpacing: -1.6,
-          color: COLORS.orange,
-          lineHeight: 1.05,
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {value}
-      </div>
-      <div
-        style={{
-          fontSize: 24,
-          fontWeight: 400,
-          color: COLORS.inkSoft,
-          marginTop: 8,
-        }}
-      >
-        {label}
-      </div>
+const CORE_LAYERS = [
+  ['Connectors', 'dealer-management ERP · CRM · HCM · OEM warranty portals'],
+  ['Knowledge', 'OEM warranty policy manuals · coverage and rate tables · SOPs'],
+  ['Templates', 'claim forms · appeal letters · write-off memos · quotes'],
+];
+
+const ProcCard: React.FC<{
+  delay: number;
+  live: boolean;
+  n: string;
+  t: string;
+  d: string;
+  left: number;
+}> = ({delay, live, n, t, d, left}) => {
+  const frame = useCurrentFrame();
+  const lit = live
+    ? interpolate(frame, [0, 14], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      })
+    : 0;
+  return (
+    <div style={{position: 'absolute', left, top: 236, width: 300}}>
+      <Rise delay={delay} distance={18} dur={20}>
+        <div
+          style={{
+            border: `${live ? 3 : 2}px solid ${
+              lit > 0.5 ? COLORS.orange : '#D5CCC3'
+            }`,
+            backgroundColor: lit > 0.5 ? COLORS.cream : '#F1ECE7',
+            borderRadius: 12,
+            padding: '16px 20px 18px',
+            height: 150,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 18,
+              fontWeight: 700,
+              letterSpacing: 2,
+              color: lit > 0.5 ? COLORS.orange : COLORS.inkMuted,
+            }}
+          >
+            {lit > 0.5 ? `${n} · LIVE` : n}
+          </div>
+          <div
+            style={{
+              fontSize: 26,
+              fontWeight: 700,
+              color: lit > 0.5 ? COLORS.ink : COLORS.inkSoft,
+              marginTop: 6,
+              lineHeight: 1.15,
+            }}
+          >
+            {t}
+          </div>
+          <div
+            style={{
+              fontSize: 18,
+              fontWeight: 300,
+              color: COLORS.inkMuted,
+              marginTop: 6,
+              lineHeight: 1.3,
+            }}
+          >
+            {d}
+          </div>
+        </div>
+      </Rise>
     </div>
-  </Rise>
-);
+  );
+};
 
 export const SceneCaseStudy: React.FC = () => {
+  const frame = useCurrentFrame();
   const beat = useBeat();
+
+  const liveAt = beat(0.586);
+  const barFill = interpolate(frame, [beat(0.529), beat(0.575)], [0, 100], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
   return (
-  <Stage tone="light" padding={0}>
-    <div style={{position: 'absolute', left: 130, top: 62}}>
-      <Eyebrow delay={beat(0.01)}>Case study</Eyebrow>
-      <div style={{height: 24}} />
-      <Rise delay={beat(0.05)} distance={16}>
-        <div
-          style={{
-            fontSize: 52,
-            fontWeight: 700,
-            letterSpacing: -1.2,
-            color: COLORS.ink,
-          }}
-        >
-          Three disconnected systems, one Planner agent
-        </div>
-      </Rise>
-    </div>
-
-    <SourceBox delay={beat(0.158)} left={190} label="QuickBase" />
-    <SourceBox delay={beat(0.23)} left={790} label="Event Documents" />
-    <SourceBox delay={beat(0.303)} left={1390} label="Policy Library" />
-
-    {/* sources funnel into the agent */}
-    <Connector
-      delay={beat(0.4)}
-      id="cs-bus"
-      heads="none"
-      d="M 360 382 L 360 434 M 960 382 L 960 434 M 1560 382 L 1560 434 M 360 434 L 1560 434"
-    />
-    <Connector delay={beat(0.418)} id="cs-in" heads="end" d="M 960 434 L 960 461" />
-
-    <div style={{position: 'absolute', left: 660, top: 476, width: 600}}>
-      <Rise delay={beat(0.418)} distance={20} dur={24}>
-        <div
-          style={{
-            border: `3px solid ${COLORS.orange}`,
-            backgroundColor: COLORS.white,
-            borderRadius: 12,
-            padding: '20px 26px',
-            textAlign: 'center',
-            boxShadow: '0 10px 40px rgba(235,99,54,0.16)',
-          }}
-        >
-          <div style={{fontSize: 40, fontWeight: 700, color: COLORS.orange}}>
-            Planner Agent
+    <Stage tone="light" padding={0}>
+      <div style={{position: 'absolute', left: 130, top: 56}}>
+        <Eyebrow delay={beat(0.02)}>Case study</Eyebrow>
+        <div style={{height: 22}} />
+        <Rise delay={beat(0.05)} distance={16}>
+          <div
+            style={{
+              fontSize: 46,
+              fontWeight: 700,
+              letterSpacing: -1,
+              color: COLORS.ink,
+            }}
+          >
+            A heavy-equipment service business
           </div>
-        </div>
-      </Rise>
-    </div>
+        </Rise>
+      </div>
 
-    <Connector delay={beat(0.57)} id="cs-out" d="M 960 596 L 960 633" />
+      {PROCS.map((p, i) => (
+        <ProcCard
+          key={p.n}
+          delay={beat(0.091 + i * 0.034)}
+          live={i === 0}
+          left={130 + i * 320}
+          {...p}
+        />
+      ))}
 
-    <div style={{position: 'absolute', left: 610, top: 648, width: 700}}>
-      <Rise delay={beat(0.582)} distance={16} dur={20}>
-        <div
-          style={{
-            backgroundColor: COLORS.cream,
-            border: `2px solid ${COLORS.orange}`,
-            borderRadius: 12,
-            padding: '16px 24px',
-            textAlign: 'center',
-          }}
-        >
-          <div style={{fontSize: 30, fontWeight: 600, color: COLORS.ink}}>
-            Staff ask in plain language
+      {/* the live badge only lights once the VO says warranty is live */}
+      {frame >= liveAt ? (
+        <ProcCard
+          delay={0}
+          live
+          left={130}
+          n={PROCS[0].n}
+          t={PROCS[0].t}
+          d={PROCS[0].d}
+        />
+      ) : null}
+
+      <Connector delay={beat(0.27)} id="cs-link" d="M 960 400 L 960 440" />
+
+      <div style={{position: 'absolute', left: 130, top: 448, width: 1660}}>
+        <Rise delay={beat(0.286)} distance={20} dur={24}>
+          <div
+            style={{
+              border: `3px solid ${COLORS.orange}`,
+              backgroundColor: COLORS.white,
+              borderRadius: 12,
+              padding: '22px 34px 26px',
+              boxShadow: '0 10px 40px rgba(235,99,54,0.14)',
+            }}
+          >
+            <div
+              style={{
+                fontSize: 22,
+                fontWeight: 700,
+                letterSpacing: 2.4,
+                color: COLORS.orange,
+                textAlign: 'center',
+              }}
+            >
+              ENTERPRISE AI CORE · BUILT ONCE, REUSED BY ALL FIVE
+            </div>
+            <div style={{height: 18}} />
+            {CORE_LAYERS.map(([t, d], i) => (
+              <Rise key={t} delay={beat(0.329 + i * 0.071)} distance={12} dur={18}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: 26,
+                    marginBottom: 10,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: 25,
+                      fontWeight: 700,
+                      color: COLORS.ink,
+                      width: 200,
+                      flex: 'none',
+                    }}
+                  >
+                    {t}
+                  </span>
+                  <span
+                    style={{fontSize: 23, fontWeight: 300, color: COLORS.inkSoft}}
+                  >
+                    {d}
+                  </span>
+                </div>
+              </Rise>
+            ))}
           </div>
-        </div>
-      </Rise>
-    </div>
+        </Rise>
+      </div>
 
-    <div
-      style={{
-        position: 'absolute',
-        left: 150,
-        right: 150,
-        top: 790,
-        display: 'flex',
-        gap: 40,
-      }}
-    >
-      <Outcome delay={beat(0.703)} value="3 → 1" label="systems unified into one interface" />
-      <Outcome delay={beat(0.776)} value="Hours → seconds" label="time to answer" />
-      <Outcome delay={beat(0.848)} value="2×" label="new client wins" />
-    </div>
-  </Stage>
+      {/* month 3 of 24 */}
+      <div style={{position: 'absolute', left: 130, top: 852, width: 880}}>
+        <Rise delay={beat(0.529)} distance={16}>
+          <div
+            style={{
+              height: 18,
+              borderRadius: 9,
+              backgroundColor: '#E8DFD6',
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                width: `${(barFill / 100) * (3 / 24) * 100}%`,
+                height: '100%',
+                backgroundColor: COLORS.orange,
+              }}
+            />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginTop: 12,
+            }}
+          >
+            <span style={{fontSize: 26, fontWeight: 700, color: COLORS.orange}}>
+              Month 3
+            </span>
+            <span style={{fontSize: 26, fontWeight: 300, color: COLORS.inkMuted}}>
+              Month 24
+            </span>
+          </div>
+        </Rise>
+      </div>
+
+      <div style={{position: 'absolute', left: 1120, top: 838, width: 670}}>
+        <Rise delay={beat(0.62)} distance={20}>
+          <div style={{display: 'flex', alignItems: 'baseline', gap: 22}}>
+            <span
+              style={{
+                fontSize: 58,
+                fontWeight: 700,
+                letterSpacing: -2,
+                color: COLORS.orange,
+              }}
+            >
+              $1.5M+
+            </span>
+            <span style={{fontSize: 24, fontWeight: 300, color: COLORS.inkSoft}}>
+              of stuck warranty claims
+              <br />
+              surfaced and being worked
+            </span>
+          </div>
+        </Rise>
+      </div>
+    </Stage>
   );
 };
 
