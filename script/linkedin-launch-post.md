@@ -1,86 +1,75 @@
-# LinkedIn launch post — Dash's draft, edited
+# LinkedIn launch post — "backwards" version
 
-Editing rule applied: **fix the English, keep the tone and the substance.**
-Nothing was restructured, no phrasing was corporatised, and every argument is
-his. The only structural change is paragraph breaks in the long middle block,
-for LinkedIn scannability.
+Same structure as Dash's draft (thesis → market-context stack → standing →
+imperative stack → CTA), same vocabulary, opening on the sharper hook.
+
+The one real addition is the payoff paragraph. A hook that says *backwards*
+makes a promise, and the post has to name what is backwards or the opener is
+just a tease. That paragraph is the rewrite.
 
 ---
 
 ## Clean version
 
 ```
-Portfolio companies have unique challenges when it comes to the AI wave.
+Portfolio companies are getting the AI wave backwards.
 
-Business models are under siege. Everyone is waiting to see where the chips will fall.
+Business models are under siege. Everyone is waiting to see where the chips will fall. IT budgets are limited. AI investments and token burn were never in the business plan — it is mostly redirected spend, and non-AI spend that got cut.
 
-IT budgets are limited. AI investments and token burn have not been factored into business plans. It is mostly redirecting existing spend, and cutting off non-AI spend.
+So the money goes to whatever is easiest to buy. Citizen development tools have turned everyone into a developer, and every function thinks it is one turn away from launching production-grade apps. Software vendors are crawling all over them, trying to catch executive optimism through any channel they can.
 
-Citizen development tools have turned everyone into a developer. Every function thinks it is one turn away from launching production-grade apps. And software vendors are crawling all over them, trying to catch executive optimism through any channel they can.
+That is backwards. Tools first, foundation never. Everyone is building, and nobody owns anything.
 
 At Infinite Possibilities, we are shaped by our experience. We are one of the first system integrators to deliver an at-scale AI platform to over 10,000 consultants across six continents, for one of the world's leading consulting firms.
 
-We are taking a message to the portfolio companies. Build your own AI platform. Your knowledge, your tools, your workflows are unique. Do not expect frontier models to solve your problems. You need to build your own agentic harness and your own AI agent swarm.
+So we are taking a message to the portfolio companies. Build your own AI platform. Your knowledge, your tools, your workflows are unique. Do not expect frontier models to solve your problems. You need to build your own agentic harness and your own AI agent swarm.
 
 Building has never been easier. Lay the foundation of a strategic asset that will drive profitable growth and improve exit value in the years to come.
 
 We are ready to help you build your AI advantage. Reach us at dash@infinitepossibilities.ai
 
-How Portfolio Companies Turn AI Into Exit Value — four minutes, link below.
+How Portfolio Companies Turn AI Into Exit Value — four minutes. Link in the comments.
 ```
 
 ---
 
-## What changed
+## What moved, and why
 
-| Your text | Edit | Why |
-|---|---|---|
-| under seige | under **siege** | typo |
-| have truned everyone | have **turned** everyone | typo |
-| Every fundtion | Every **function** | typo |
-| unqiue | **unique** | typo |
-| token burns **has** not been factored | token burn **have** not been factored | agreement |
-| they are turn away from | it is **one** turn away from | missing word; kept your phrase |
-| production grade apps | production**-**grade apps | compound adjective |
-| crawling all over — trying | crawling all over **them**, trying | "crawling all over" needs an object |
-| one of the first system **integrator** | system **integrators** | agreement |
-| deliver **at scale AI platform** | deliver **an at-scale AI platform** | missing article |
-| **in** six continents | **across** six continents | idiom |
-| for one of **world's** leading | for one of **the** world's leading | missing article |
-| re-directing | redirecting | one word |
-| Your knowledge, tools, workflows are unique | Your knowledge, **your** tools, **your** workflows are unique | the repetition sharpens the rhythm |
-| your own agentic harness and AI agent swarm | your own agentic harness and **your own** AI agent swarm | same |
-| one long middle paragraph | split into three | LinkedIn scannability; your own posts run 2–4 sentences per block |
+- **New opener.** "Portfolio companies have unique challenges" stated a
+  category; "getting the AI wave backwards" states a verdict. Verdicts get read.
+- **Your pressure list now argues.** Same sentences, but "So the money goes to
+  whatever is easiest to buy" turns the stack from a description of their world
+  into the *cause* of the mistake. That one connective is what makes the list
+  evidence rather than context.
+- **Added the payoff.** *"That is backwards. Tools first, foundation never.
+  Everyone is building, and nobody owns anything."* Fragments, on purpose. This
+  is the paragraph the hook was writing a cheque for.
+- **"So we are taking a message"** — the "so" now lands on the credential above
+  it, so the message reads as earned rather than announced.
+- **Link moved to the comments**, per the reach note.
 
-Kept exactly as written: "under siege," "where the chips will fall," "crawling
-all over," "turned everyone into a developer," "We are taking a message to the
-portfolio companies," "Building has never been easier," and the imperative stack
-(Build / Do not expect / You need to build). Those are the post.
+Untouched: under siege, where the chips will fall, crawling all over, turned
+everyone into a developer, one turn away, agentic harness, AI agent swarm,
+Building has never been easier, the whole imperative stack, and the close.
 
 ---
 
-## Two things worth deciding
+## Alternates for the payoff line
 
-**1. The bare URL will cost you reach.** LinkedIn suppresses posts with outbound
-links in the body. Put the link in the **first comment** instead and change the
-last line to "Four minutes. Link in the comments." Costs one click, usually
-worth several times the impressions.
+If "Tools first, foundation never" is not your taste:
 
-**2. "One of the first system integrators."** It is the only line a sceptic
-could push on, and it is a claim about your own firm rather than a number from
-the film. You have been strict about this elsewhere — flagging it so the call is
-deliberate. "One of the first" is defensible; if you want it bulletproof, "among
-the first" or simply dropping to "We delivered an at-scale AI platform to over
-10,000 consultants across six continents" loses nothing, because the number is
-already the proof.
+- *That is backwards. They are buying AI. They should be building an asset.*
+- *That is backwards. Everyone is shipping apps. Nobody is laying a foundation.*
+- *That is backwards. The tools are the easy part. The asset is the point.*
 
 ---
 
-## Optional: a sharper opening line
+## Optional: tie harder to the title
 
-Your first line is the only thing most people see before "see more." The current
-one states a category. These open on the tension instead — take or leave:
+The film's sharpest line for this post is one you did not use:
 
-- *Portfolio companies are getting the AI wave backwards.*
-- *Every function in your portfolio company now thinks it can ship software.*
-- *Business models are under siege, and the AI budget was never in the plan.*
+> *Pilots do not show up at exit. A platform you own does.*
+
+Dropped in just before "Building has never been easier," it would connect the
+post directly to "Exit Value" in the title. Left out because it is my line, not
+yours — take it if it sounds right in your mouth.
