@@ -30,7 +30,9 @@ AI talent is limited. People are learning on the job, and that favors one-off ap
 
 What feels like progress — isn't.
 
-What portfolio companies cannot lose sight of: at the end of the hold cycle, the next buyer will ask how AI added value to the enterprise. Did margins expand? Did AI spur growth?
+None of this gets judged today. It gets judged in the data room.
+
+The next buyer will not ask what you spent on AI. They will ask what you built. Did margins expand? Did AI spur growth? Does any of it still run without the vendor who sold it?
 
 A patchwork of implemented AI solutions will not get you there.
 
